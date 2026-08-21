@@ -1,80 +1,101 @@
-/* Estilos de la ficha de paciente en PDF.
-   Edita aquí colores, tipografía y layout sin tocar el HTML ni el Python. */
+/* Estilos de la Carta de Aceptación - Club de Bienestar Canino Fino */
 
 @page {
     size: Letter;
-    margin: 2cm;
+    margin: 1.8cm;
 }
 
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     color: #222;
-    font-size: 12pt;
+    font-size: 9.5pt;
+    line-height: 1.35;
 }
 
+/* ---------- Encabezado ---------- */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 3px solid #2c6ecb;
-    padding-bottom: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 4px;
 }
 
-.header h1 {
-    font-size: 20pt;
-    color: #2c6ecb;
+.header .titulos h1 {
+    font-size: 15pt;
+    color: #a3742a; /* dorado similar al logo */
+    margin: 0 0 4px 0;
+}
+
+.header .titulos .subtitulo {
+    font-size: 10.5pt;
+    font-weight: bold;
     margin: 0;
 }
 
-.header .fecha {
-    font-size: 10pt;
-    color: #666;
+.header .logo {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
 }
 
-.foto {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+/* ---------- Tabla de datos generales ---------- */
+.datos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px 0;
+    font-size: 9.5pt;
 }
 
-.datos-grid {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+.datos-table td {
+    border: 1px solid #999;
+    padding: 4px 6px;
 }
 
-.campo {
-    width: 50%;
-    margin-bottom: 10px;
+.datos-table .label {
+    font-weight: bold;
+    white-space: nowrap;
 }
 
-.campo .label {
-    font-size: 9pt;
-    text-transform: uppercase;
-    color: #888;
-    letter-spacing: 0.5px;
+.datos-table .valor {
+    color: #1a1a1a;
 }
 
-.campo .valor {
-    font-size: 12pt;
-    font-weight: 600;
+/* ---------- Secciones numeradas ---------- */
+.seccion {
+    margin-top: 8px;
 }
 
-.observaciones {
-    background: #f5f7fa;
-    border-radius: 6px;
-    padding: 14px;
-    margin: 20px 0;
-    min-height: 60px;
+.seccion h2 {
+    font-size: 9.5pt;
+    font-weight: bold;
+    margin: 0 0 2px 0;
 }
 
+.seccion p {
+    margin: 0 0 4px 0;
+    text-align: justify;
+}
+
+/* ---------- Bloque de contacto de emergencia ---------- */
+.linea-campo {
+    margin: 4px 0;
+}
+
+.linea-campo .label {
+    font-weight: bold;
+}
+
+.linea-valor {
+    display: inline-block;
+    min-width: 250px;
+    border-bottom: 1px solid #333;
+}
+
+/* ---------- Firmas ---------- */
 .firmas {
     display: flex;
     justify-content: space-between;
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .firma-box {
@@ -84,19 +105,32 @@ body {
 
 .firma-box img {
     width: 100%;
-    max-height: 100px;
+    max-height: 70px;
     object-fit: contain;
     border-bottom: 1px solid #333;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .firma-sin-firmar {
-    height: 100px;
+    height: 70px;
     border-bottom: 1px solid #333;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .firma-box .nombre {
-    font-size: 10pt;
-    color: #555;
+    font-size: 9pt;
+    color: #444;
+}
+
+/* ---------- Observaciones finales ---------- */
+.observaciones-finales {
+    margin-top: 20px;
+    font-size: 9.5pt;
+}
+
+.observaciones-finales .linea-valor {
+    min-width: 100%;
+    display: block;
+    border-bottom: 1px solid #333;
+    min-height: 16px;
 }

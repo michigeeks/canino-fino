@@ -51,6 +51,19 @@ def uploaded_file_to_base64(uploaded_file) -> str | None:
     return f"data:{mime};base64,{b64}"
 
 
+def _file_to_base64(path: Path) -> str | None:
+    """Lee un archivo de imagen en disco y lo convierte a data-URI base64.
+
+    Se usa para assets FIJOS (ej. el logo del club), que no vienen del
+    formulario sino que ya viven en la carpeta static/ del proyecto.
+    """
+    if not path.exists():
+        return None
+    mime = "image/png" if path.suffix.lower() == ".png" else "image/jpeg"
+    b64 = base64.b64encode(path.read_bytes()).decode()
+    return f"data:{mime};base64,{b64}"
+
+
 def render_ficha_pdf(**context) -> bytes:
     """Renderiza templates/ficha.html con el contexto dado y devuelve los bytes del PDF.
 
@@ -58,8 +71,12 @@ def render_ficha_pdf(**context) -> bytes:
     en el HTML (en vez de enlazarlo como archivo externo) para que WeasyPrint
     no necesite resolver rutas relativas — útil también cuando se despliega
     en Streamlit Community Cloud.
+
+    El logo del club (static/logo_club_canino.png) se embebe automáticamente
+    aquí, así app.py no tiene que preocuparse por él en cada envío.
     """
     css = (STATIC_DIR / "style.css").read_text(encoding="utf-8")
+    logo_b64 = _file_to_base64(STATIC_DIR / "logo_club_canino.png")
     template = _jinja_env.get_template("ficha.html")
-    html_final = template.render(css=css, **context)
+    html_final = template.render(css=css, logo=logo_b64, **context)
     return HTML(string=html_final).write_pdf()

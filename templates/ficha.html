@@ -8,58 +8,174 @@
 <body>
 
     <div class="header">
-        <div>
-            <h1>Ficha de Paciente</h1>
-            <div class="fecha">Fecha: {{ fecha }}</div>
+        <div class="titulos">
+            <h1>CLUB DE BIENESTAR CANINO FINO</h1>
+            <p class="subtitulo">CARTA DE ACEPTACIÓN DE SERVICIOS DE HOTEL BOUTIQUE</p>
         </div>
-        {% if foto %}
-        <img class="foto" src="{{ foto }}">
+        {% if logo %}
+        <img class="logo" src="{{ logo }}">
         {% endif %}
     </div>
 
-    <div class="datos-grid">
-        <div class="campo">
-            <div class="label">Nombre completo</div>
-            <div class="valor">{{ nombre }}</div>
-        </div>
-        <div class="campo">
-            <div class="label">Edad</div>
-            <div class="valor">{{ edad }}</div>
-        </div>
-        <div class="campo">
-            <div class="label">Documento</div>
-            <div class="valor">{{ documento }}</div>
-        </div>
-        <div class="campo">
-            <div class="label">Teléfono</div>
-            <div class="valor">{{ telefono }}</div>
-        </div>
-        <div class="campo">
-            <div class="label">Correo</div>
-            <div class="valor">{{ email }}</div>
-        </div>
+    <table class="datos-table">
+        <tr>
+            <td class="label" style="width:15%">Fecha:</td>
+            <td class="valor" style="width:35%">{{ fecha }}</td>
+            <td class="label" style="width:15%">Ingreso:</td>
+            <td class="valor" style="width:35%">{{ ingreso }} &nbsp;&nbsp; Salida estimada: {{ salida_estimada }}</td>
+        </tr>
+        <tr>
+            <td class="label">Propietario/Tutor:</td>
+            <td class="valor">{{ propietario }}</td>
+            <td class="label">Teléfono:</td>
+            <td class="valor">{{ telefono_propietario }}</td>
+        </tr>
+        <tr>
+            <td class="label">Perrito:</td>
+            <td class="valor">{{ perrito }} &nbsp;&nbsp; Raza: {{ raza }}</td>
+            <td class="label">Edad / Sexo / Peso:</td>
+            <td class="valor">{{ edad }} / {{ sexo }} / {{ peso }}</td>
+        </tr>
+        <tr>
+            <td class="label">MVZ habitual:</td>
+            <td class="valor">{{ mvz_habitual }}</td>
+            <td class="label">Tel. MVZ:</td>
+            <td class="valor">{{ tel_mvz }}</td>
+        </tr>
+        <tr>
+            <td class="label">Medicamentos/horarios:</td>
+            <td class="valor">{{ medicamentos }}</td>
+            <td class="label">Alergias / condición especial:</td>
+            <td class="valor">{{ alergias }}</td>
+        </tr>
+        <tr>
+            <td class="label">Persona autorizada para recoger:</td>
+            <td class="valor" colspan="2">{{ persona_autorizada }}</td>
+            <td class="valor">{{ telefono_autorizada }}</td>
+        </tr>
+    </table>
+
+    <div class="seccion">
+        <h2>I. DECLARACIONES DEL PROPIETARIO O TUTOR</h2>
+        <p>
+            Yo, {{ propietario }}, en mi carácter de propietario, tutor o responsable del perrito identificado, declaro que:
+            1) se encuentra en condiciones adecuadas de salud para permanecer en las instalaciones y convivir con otros perros;
+            2) he presentado su carnet de vacunación vigente y la información proporcionada es verdadera;
+            3) informé cualquier enfermedad, alergia, tratamiento, medicamento, cirugía reciente, limitación física, condición
+            especial o antecedente médico relevante; 4) informé sobre su temperamento y comportamiento, incluyendo agresividad,
+            ansiedad, miedo, intentos de escape, protección de recursos, reactividad, conductas destructivas o cualquier
+            circunstancia relevante; y 5) proporcioné las instrucciones necesarias respecto a alimentación, medicamentos,
+            objetos personales y cuidados particulares.
+        </p>
     </div>
 
-    <div class="label">Motivo / Observaciones</div>
-    <div class="observaciones">{{ motivo }}</div>
+    <div class="seccion">
+        <h2>II. ALIMENTACIÓN Y PERTENENCIAS</h2>
+        <p>
+            Me comprometo a proporcionar alimento suficiente para la totalidad de la estancia, debidamente identificado, así
+            como las indicaciones de cantidad y horarios. Podré proporcionar cama, cobija, juguetes u otros objetos personales
+            que favorezcan su adaptación y tranquilidad. Comprendo que, por el uso normal, juego o conducta propia del animal,
+            dichos objetos pueden ensuciarse, deteriorarse o dañarse, por lo que el Club no será responsable por su desgaste
+            ordinario.
+        </p>
+    </div>
+
+    <div class="seccion">
+        <h2>III. CONVIVENCIA Y ACEPTACIÓN DE RIESGOS</h2>
+        <p>
+            Comprendo que el Hotel Boutique contempla periodos de convivencia, juego, paseos, descanso y enriquecimiento de
+            acuerdo con las características y necesidades de cada perro. Reconozco que, aun con medidas razonables de
+            supervisión, manejo y prevención, existen riesgos inherentes como raspones, heridas superficiales, empujones,
+            juegos bruscos, mordidas accidentales, ensuciamiento del pelaje o molestias derivadas de la actividad. Estos
+            acontecimientos no implicarán por sí mismos negligencia cuando se hayan aplicado medidas razonables de cuidado y
+            supervisión.
+        </p>
+    </div>
+
+    <div class="seccion">
+        <h2>IV. ADAPTACIÓN, ESTRÉS Y COMPORTAMIENTO</h2>
+        <p>
+            Comprendo que permanecer fuera de casa y separarse temporalmente de su familia puede generar cambios transitorios
+            de comportamiento, apetito, sueño, inquietud, vocalización o cansancio. Autorizo al personal a modificar
+            temporalmente actividades, convivencia o periodos de descanso cuando considere que ello favorece su bienestar.
+        </p>
+    </div>
+
+    <div class="seccion">
+        <h2>V. ATENCIÓN VETERINARIA Y EMERGENCIAS</h2>
+        <p>
+            En caso de accidente, enfermedad o situación que requiera atención veterinaria, autorizo al Club a comunicarse
+            conmigo inmediatamente. Si la situación requiere atención inmediata y no es posible localizarme oportunamente,
+            autorizo expresamente el traslado de mi perro a un médico veterinario para proteger su salud e integridad. Acepto
+            cubrir gastos veterinarios, medicamentos, estudios, hospitalización, traslados y demás conceptos derivados, salvo
+            aquellos directamente atribuibles a una conducta negligente del establecimiento.
+        </p>
+    </div>
+
+    <div class="seccion">
+        <h2>VI. AUTORIZACIÓN DE MANEJO</h2>
+        <p>
+            Autorizo al personal a realizar las acciones razonablemente necesarias para el manejo seguro y bienestar de mi
+            perro, incluyendo uso de correa, separación temporal del grupo, cambio de área, descanso individual o suspensión
+            de determinadas actividades. Comprendo que el Club podrá restringir la convivencia o solicitar la terminación
+            anticipada de la estancia cuando la conducta o estado de salud represente un riesgo significativo para él, otros
+            perros o el personal.
+        </p>
+    </div>
+
+    <div class="seccion">
+        <h2>VII. CONTACTO DE EMERGENCIA Y RECOLECCIÓN ANTICIPADA</h2>
+        <p>
+            Si el Club determina que, por motivos de salud, comportamiento o bienestar, mi perro no puede continuar su
+            estancia, me comprometo a recogerlo o designar a una persona responsable para hacerlo.
+        </p>
+        <p class="linea-campo">
+            <span class="label">Contacto de emergencia:</span>
+            <span class="linea-valor">{{ contacto_emergencia }}</span>
+        </p>
+        <p class="linea-campo">
+            <span class="label">Teléfono:</span>
+            <span class="linea-valor">{{ telefono_emergencia }}</span>
+        </p>
+        <p class="linea-campo">
+            <span class="label">¿Autorizo a esta persona para tomar decisiones si no es posible localizarme?</span>
+            {{ autoriza_decisiones }}
+        </p>
+    </div>
+
+    <div class="seccion">
+        <h2>VIII. ACEPTACIÓN</h2>
+        <p>
+            Declaro haber leído íntegramente este documento, haber proporcionado información verdadera respecto a la salud y
+            comportamiento de mi perro y haber recibido respuesta a mis dudas. Comprendo las características propias de un
+            servicio de hospedaje canino y acepto voluntariamente las condiciones del Hotel Boutique de Club de Bienestar
+            Canino Fino, reconociendo que su prioridad será procurar el bienestar, seguridad y cuidado de mi perro durante su
+            estancia.
+        </p>
+    </div>
 
     <div class="firmas">
         <div class="firma-box">
-            {% if firma_cliente %}
-                <img src="{{ firma_cliente }}">
+            {% if firma_propietario %}
+                <img src="{{ firma_propietario }}">
             {% else %}
                 <div class="firma-sin-firmar"></div>
             {% endif %}
-            <div class="nombre">Firma del cliente / paciente</div>
+            <div class="nombre">Nombre y firma del propietario o tutor</div>
         </div>
         <div class="firma-box">
-            {% if firma_encargado %}
-                <img src="{{ firma_encargado }}">
+            {% if firma_responsable %}
+                <img src="{{ firma_responsable }}">
             {% else %}
                 <div class="firma-sin-firmar"></div>
             {% endif %}
-            <div class="nombre">Firma del encargado / responsable</div>
+            <div class="nombre">Responsable Club de Bienestar Canino Fino</div>
         </div>
+    </div>
+
+    <div class="observaciones-finales">
+        <span class="label">Observaciones:</span>
+        <span class="linea-valor">{{ observaciones }}</span>
     </div>
 
 </body>
