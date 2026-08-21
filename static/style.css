@@ -1,0 +1,102 @@
+/* Estilos de la ficha de paciente en PDF.
+   Edita aquí colores, tipografía y layout sin tocar el HTML ni el Python. */
+
+@page {
+    size: Letter;
+    margin: 2cm;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #222;
+    font-size: 12pt;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #2c6ecb;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+}
+
+.header h1 {
+    font-size: 20pt;
+    color: #2c6ecb;
+    margin: 0;
+}
+
+.header .fecha {
+    font-size: 10pt;
+    color: #666;
+}
+
+.foto {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.datos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.campo {
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.campo .label {
+    font-size: 9pt;
+    text-transform: uppercase;
+    color: #888;
+    letter-spacing: 0.5px;
+}
+
+.campo .valor {
+    font-size: 12pt;
+    font-weight: 600;
+}
+
+.observaciones {
+    background: #f5f7fa;
+    border-radius: 6px;
+    padding: 14px;
+    margin: 20px 0;
+    min-height: 60px;
+}
+
+.firmas {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+
+.firma-box {
+    width: 45%;
+    text-align: center;
+}
+
+.firma-box img {
+    width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+    border-bottom: 1px solid #333;
+    margin-bottom: 6px;
+}
+
+.firma-sin-firmar {
+    height: 100px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 6px;
+}
+
+.firma-box .nombre {
+    font-size: 10pt;
+    color: #555;
+}

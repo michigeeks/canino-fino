@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+{{ css }}
+</style>
+</head>
+<body>
+
+    <div class="header">
+        <div>
+            <h1>Ficha de Paciente</h1>
+            <div class="fecha">Fecha: {{ fecha }}</div>
+        </div>
+        {% if foto %}
+        <img class="foto" src="{{ foto }}">
+        {% endif %}
+    </div>
+
+    <div class="datos-grid">
+        <div class="campo">
+            <div class="label">Nombre completo</div>
+            <div class="valor">{{ nombre }}</div>
+        </div>
+        <div class="campo">
+            <div class="label">Edad</div>
+            <div class="valor">{{ edad }}</div>
+        </div>
+        <div class="campo">
+            <div class="label">Documento</div>
+            <div class="valor">{{ documento }}</div>
+        </div>
+        <div class="campo">
+            <div class="label">Teléfono</div>
+            <div class="valor">{{ telefono }}</div>
+        </div>
+        <div class="campo">
+            <div class="label">Correo</div>
+            <div class="valor">{{ email }}</div>
+        </div>
+    </div>
+
+    <div class="label">Motivo / Observaciones</div>
+    <div class="observaciones">{{ motivo }}</div>
+
+    <div class="firmas">
+        <div class="firma-box">
+            {% if firma_cliente %}
+                <img src="{{ firma_cliente }}">
+            {% else %}
+                <div class="firma-sin-firmar"></div>
+            {% endif %}
+            <div class="nombre">Firma del cliente / paciente</div>
+        </div>
+        <div class="firma-box">
+            {% if firma_encargado %}
+                <img src="{{ firma_encargado }}">
+            {% else %}
+                <div class="firma-sin-firmar"></div>
+            {% endif %}
+            <div class="nombre">Firma del encargado / responsable</div>
+        </div>
+    </div>
+
+</body>
+</html>
