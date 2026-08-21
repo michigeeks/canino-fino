@@ -1,0 +1,73 @@
+Documentos Originales
+
+# =========================
+# Python
+# =========================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+ENV/
+
+# =========================
+# Variables de entorno / secretos
+# =========================
+
+.env
+.env.*
+!.env.example
+
+# =========================
+# Streamlit
+# =========================
+
+.streamlit/secrets.toml
+
+# =========================
+# Archivos generados
+# =========================
+
+*.log
+*.tmp
+*.temp
+
+# PDFs generados
+*.pdf
+
+# Imágenes generadas
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+# Archivos temporales
+temp/
+tmp/
+output/
+outputs/
+
+# =========================
+# Jupyter
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+# IDEs / editores
+# =========================
+
+.vscode/
+.idea/
+
+# =========================
+# Sistema operativo
+# =========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
