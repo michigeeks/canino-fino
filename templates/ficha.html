@@ -19,38 +19,51 @@
 
     <table class="datos-table">
         <tr>
-            <td class="label" style="width:15%">Fecha:</td>
-            <td class="valor" style="width:35%">{{ fecha }}</td>
-            <td class="label" style="width:15%">Ingreso:</td>
-            <td class="valor" style="width:35%">{{ ingreso }} &nbsp;&nbsp; Salida estimada: {{ salida_estimada }}</td>
+            <td class="label">Fecha:</td>
+            <td class="valor">{{ fecha }}</td>
+            <td class="label">Ingreso:</td>
+            <td class="valor">{{ ingreso }}</td>
+            <td class="label">Salida estimada:</td>
+            <td class="valor">{{ salida_estimada }}</td>
         </tr>
         <tr>
             <td class="label">Propietario/Tutor:</td>
-            <td class="valor">{{ propietario }}</td>
+            <td class="valor" colspan="3">{{ propietario }}</td>
             <td class="label">Teléfono:</td>
             <td class="valor">{{ telefono_propietario }}</td>
         </tr>
         <tr>
             <td class="label">Perrito:</td>
-            <td class="valor">{{ perrito }} &nbsp;&nbsp; Raza: {{ raza }}</td>
-            <td class="label">Edad / Sexo / Peso:</td>
-            <td class="valor">{{ edad }} / {{ sexo }} / {{ peso }}</td>
+            <td class="valor">{{ perrito }}</td>
+            <td class="label">Raza:</td>
+            <td class="valor" colspan="3">{{ raza }}</td>
+        </tr>
+        <tr>
+            <td class="label">Edad:</td>
+            <td class="valor">{{ edad }}</td>
+            <td class="label">Sexo:</td>
+            <td class="valor">{{ sexo }}</td>
+            <td class="label">Peso aprox.:</td>
+            <td class="valor">{{ peso }}</td>
         </tr>
         <tr>
             <td class="label">MVZ habitual:</td>
-            <td class="valor">{{ mvz_habitual }}</td>
+            <td class="valor" colspan="3">{{ mvz_habitual }}</td>
             <td class="label">Tel. MVZ:</td>
             <td class="valor">{{ tel_mvz }}</td>
         </tr>
         <tr>
             <td class="label">Medicamentos/horarios:</td>
-            <td class="valor">{{ medicamentos }}</td>
-            <td class="label">Alergias / condición especial:</td>
-            <td class="valor">{{ alergias }}</td>
+            <td class="valor" colspan="5">{{ medicamentos }}</td>
+        </tr>
+        <tr>
+            <td class="label">Alergias o condición especial:</td>
+            <td class="valor" colspan="5">{{ alergias }}</td>
         </tr>
         <tr>
             <td class="label">Persona autorizada para recoger:</td>
-            <td class="valor" colspan="2">{{ persona_autorizada }}</td>
+            <td class="valor" colspan="3">{{ persona_autorizada }}</td>
+            <td class="label">Teléfono:</td>
             <td class="valor">{{ telefono_autorizada }}</td>
         </tr>
     </table>
@@ -58,7 +71,7 @@
     <div class="seccion">
         <h2>I. DECLARACIONES DEL PROPIETARIO O TUTOR</h2>
         <p>
-            Yo, {{ propietario }}, en mi carácter de propietario, tutor o responsable del perrito identificado, declaro que:
+            Yo, <strong>{{ propietario }}</strong>, en mi carácter de propietario, tutor o responsable del perrito identificado, declaro que:
             1) se encuentra en condiciones adecuadas de salud para permanecer en las instalaciones y convivir con otros perros;
             2) he presentado su carnet de vacunación vigente y la información proporcionada es verdadera;
             3) informé cualquier enfermedad, alergia, tratamiento, medicamento, cirugía reciente, limitación física, condición
@@ -131,11 +144,11 @@
         </p>
         <p class="linea-campo">
             <span class="label">Contacto de emergencia:</span>
-            <span class="linea-valor">{{ contacto_emergencia }}</span>
+            <span class="valor-plano">{{ contacto_emergencia }}</span>
         </p>
         <p class="linea-campo">
             <span class="label">Teléfono:</span>
-            <span class="linea-valor">{{ telefono_emergencia }}</span>
+            <span class="valor-plano">{{ telefono_emergencia }}</span>
         </p>
         <p class="linea-campo">
             <span class="label">¿Autorizo a esta persona para tomar decisiones si no es posible localizarme?</span>
@@ -175,7 +188,7 @@
 
     <div class="observaciones-finales">
         <span class="label">Observaciones:</span>
-        <span class="linea-valor">{{ observaciones }}</span>
+        <div class="observaciones-box">{{ observaciones }}</div>
     </div>
 
 </body>

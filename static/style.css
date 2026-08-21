@@ -68,6 +68,7 @@ body {
 .seccion h2 {
     font-size: 9.5pt;
     font-weight: bold;
+    color: #c00000;
     margin: 0 0 2px 0;
 }
 
@@ -89,6 +90,11 @@ body {
     display: inline-block;
     min-width: 250px;
     border-bottom: 1px solid #333;
+}
+
+.valor-plano {
+    display: inline-block;
+    min-width: 250px;
 }
 
 /* ---------- Firmas ---------- */
@@ -128,9 +134,15 @@ body {
     font-size: 9.5pt;
 }
 
-.observaciones-finales .linea-valor {
-    min-width: 100%;
-    display: block;
-    border-bottom: 1px solid #333;
+.observaciones-box {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 8px;
+    margin-top: 4px;
     min-height: 16px;
+    white-space: pre-wrap;   /* respeta saltos de línea y hace wrap normal */
+    word-wrap: break-word;   /* corta palabras muy largas si hiciera falta */
+    overflow-wrap: break-word;
 }
