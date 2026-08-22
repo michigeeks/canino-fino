@@ -1,9 +1,8 @@
 [theme]
-# Dorado tomado del logo del Club de Bienestar Canino Fino
-primaryColor = "#a3742a"
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F7F3EA"
-textColor = "#222222"
+primaryColor = "#C89A4D"
+backgroundColor = "#FAF6EE"
+secondaryBackgroundColor = "#F4EDE1"
+textColor = "#2B2926"
 font = "sans serif"
 
 [server]
