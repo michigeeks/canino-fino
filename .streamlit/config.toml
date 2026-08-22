@@ -1,0 +1,10 @@
+[theme]
+# Dorado tomado del logo del Club de Bienestar Canino Fino
+primaryColor = "#a3742a"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F7F3EA"
+textColor = "#222222"
+font = "sans serif"
+
+[server]
+maxUploadSize = 10
