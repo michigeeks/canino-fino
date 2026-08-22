@@ -46,17 +46,18 @@ body {
     font-size: 9.5pt;
 }
 
-.datos-table td {
+.datos-table td.mitad {
+    width: 50%;
     border: 1px solid #999;
-    padding: 4px 6px;
+    padding: 5px 8px;
+    vertical-align: top;
 }
 
-.datos-table .label {
+.label {
     font-weight: bold;
-    white-space: nowrap;
 }
 
-.datos-table .valor {
+.valor {
     color: #1a1a1a;
 }
 

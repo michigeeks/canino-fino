@@ -76,7 +76,7 @@ def render_ficha_pdf(**context) -> bytes:
     aquí, así app.py no tiene que preocuparse por él en cada envío.
     """
     css = (STATIC_DIR / "style.css").read_text(encoding="utf-8")
-    logo_b64 = _file_to_base64(STATIC_DIR / "logo_club_canino.png")
+    logo_b64 = _file_to_base64(STATIC_DIR / "logo_club_canino.jpeg")
     template = _jinja_env.get_template("ficha.html")
     html_final = template.render(css=css, logo=logo_b64, **context)
     return HTML(string=html_final).write_pdf()

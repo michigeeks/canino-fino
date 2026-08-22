@@ -19,52 +19,60 @@
 
     <table class="datos-table">
         <tr>
-            <td class="label">Fecha:</td>
-            <td class="valor">{{ fecha }}</td>
-            <td class="label">Ingreso:</td>
-            <td class="valor">{{ ingreso }}</td>
-            <td class="label">Salida estimada:</td>
-            <td class="valor">{{ salida_estimada }}</td>
+            <td class="mitad">
+                <span class="label">Fecha:</span> <span class="valor">{{ fecha }}</span>
+            </td>
+            <td class="mitad">
+                <span class="label">Ingreso:</span> <span class="valor">{{ ingreso }}</span>
+                &nbsp;&nbsp;
+                <span class="label">Salida estimada:</span> <span class="valor">{{ salida_estimada }}</span>
+            </td>
         </tr>
         <tr>
-            <td class="label">Propietario/Tutor:</td>
-            <td class="valor" colspan="3">{{ propietario }}</td>
-            <td class="label">Teléfono:</td>
-            <td class="valor">{{ telefono_propietario }}</td>
+            <td class="mitad">
+                <span class="label">Propietario/Tutor:</span> <span class="valor">{{ propietario }}</span>
+            </td>
+            <td class="mitad">
+                <span class="label">Teléfono:</span> <span class="valor">{{ telefono_propietario }}</span>
+            </td>
         </tr>
         <tr>
-            <td class="label">Perrito:</td>
-            <td class="valor">{{ perrito }}</td>
-            <td class="label">Raza:</td>
-            <td class="valor" colspan="3">{{ raza }}</td>
+            <td class="mitad">
+                <span class="label">Perrito:</span> <span class="valor">{{ perrito }}</span>
+                &nbsp;&nbsp;
+                <span class="label">Raza:</span> <span class="valor">{{ raza }}</span>
+            </td>
+            <td class="mitad">
+                <span class="label">Edad:</span> <span class="valor">{{ edad }}</span>
+                &nbsp;&nbsp;
+                <span class="label">Sexo:</span> <span class="valor">{{ sexo }}</span>
+                &nbsp;&nbsp;
+                <span class="label">Peso aprox.:</span> <span class="valor">{{ peso }}</span>
+            </td>
         </tr>
         <tr>
-            <td class="label">Edad:</td>
-            <td class="valor">{{ edad }}</td>
-            <td class="label">Sexo:</td>
-            <td class="valor">{{ sexo }}</td>
-            <td class="label">Peso aprox.:</td>
-            <td class="valor">{{ peso }}</td>
+            <td class="mitad">
+                <span class="label">MVZ habitual:</span> <span class="valor">{{ mvz_habitual }}</span>
+            </td>
+            <td class="mitad">
+                <span class="label">Tel. MVZ:</span> <span class="valor">{{ tel_mvz }}</span>
+            </td>
         </tr>
         <tr>
-            <td class="label">MVZ habitual:</td>
-            <td class="valor" colspan="3">{{ mvz_habitual }}</td>
-            <td class="label">Tel. MVZ:</td>
-            <td class="valor">{{ tel_mvz }}</td>
+            <td class="mitad">
+                <span class="label">Medicamentos/horarios:</span> <span class="valor">{{ medicamentos }}</span>
+            </td>
+            <td class="mitad">
+                <span class="label">Alergias o condición especial:</span> <span class="valor">{{ alergias }}</span>
+            </td>
         </tr>
         <tr>
-            <td class="label">Medicamentos/horarios:</td>
-            <td class="valor" colspan="5">{{ medicamentos }}</td>
-        </tr>
-        <tr>
-            <td class="label">Alergias o condición especial:</td>
-            <td class="valor" colspan="5">{{ alergias }}</td>
-        </tr>
-        <tr>
-            <td class="label">Persona autorizada para recoger:</td>
-            <td class="valor" colspan="3">{{ persona_autorizada }}</td>
-            <td class="label">Teléfono:</td>
-            <td class="valor">{{ telefono_autorizada }}</td>
+            <td class="mitad">
+                <span class="label">Persona autorizada para recoger:</span> <span class="valor">{{ persona_autorizada }}</span>
+            </td>
+            <td class="mitad">
+                <span class="label">Teléfono:</span> <span class="valor">{{ telefono_autorizada }}</span>
+            </td>
         </tr>
     </table>
 
