@@ -2,72 +2,103 @@
    Se cargan DESPUÉS de style.css, así que estas reglas pueden sobreescribir
    puntualmente (ej. el color de .seccion h2) sin duplicar todo lo demás. */
 
-/* ---------- Encabezado centrado (logo arriba, título abajo) ---------- */
-.header-centrado {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.header-centrado .logo-centrado {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto 6px auto;
-}
-
-.header-centrado h1 {
-    font-size: 15pt;
-    color: #a3742a;
-    margin: 4px 0;
-}
-
-.header-centrado .subtitulo-centrado {
-    font-size: 10.5pt;
-    font-weight: bold;
-    margin: 0 0 4px 0;
-}
-
-/* ---------- Layout a dos columnas (flujo tipo periódico) ---------- */
+/* ---------- Layout a dos columnas (flujo tipo periódico) ----------
+   El header (logo + título) va DENTRO de este contenedor, como primer
+   elemento del flujo, así queda anclado en la columna izquierda en vez
+   de ocupar el ancho completo de la página. */
 .dos-columnas {
     column-count: 2;
     column-gap: 22px;
-    margin-top: 6px;
 }
 
 /* Evita que una sección o campo se corte a la mitad entre columnas/páginas */
 .dos-columnas .seccion,
 .dos-columnas p.linea-campo,
 .dos-columnas .observaciones-finales,
-.dos-columnas .campo-titulo {
+.dos-columnas .campo-titulo,
+.dos-columnas .header-club {
     break-inside: avoid;
 }
 
-/* Mantiene el título de sección pegado a su primer párrafo */
+/* Mantiene el título pegado a su primer párrafo/campo */
 .dos-columnas .seccion h2,
 .dos-columnas .campo-titulo {
     break-after: avoid;
 }
 
-/* Encabezado simple de bloque de datos (no es una declaración legal) */
+/* ---------- Encabezado (logo + título del club), anclado en la columna izquierda ---------- */
+.header-club {
+    margin-bottom: 10px;
+}
+
+.header-club .logo-club {
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.header-club h1 {
+    font-size: 13pt;
+    color: #a3742a;
+    margin: 0 0 3px 0;
+    line-height: 1.2;
+}
+
+.header-club .subtitulo-club {
+    font-size: 9pt;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.25;
+}
+
+/* ---------- Encabezados de bloque de datos (no son declaraciones legales) ---------- */
 .campo-titulo {
     font-weight: bold;
     font-size: 9.5pt;
     text-transform: uppercase;
-    margin: 10px 0 4px 0;
+    color: #a3742a;
+    margin: 9px 0 3px 0;
+}
+
+/* Info directa, sin líneas de subrayado: es un sistema digital, no un formato para llenar a mano */
+.dos-columnas .linea-campo {
+    margin: 2px 0;
+}
+
+.dos-columnas .linea-valor {
+    display: inline;
+    min-width: 0;
+    border-bottom: none;
 }
 
 /* En este formato las secciones legales usan el dorado de marca en vez del rojo */
+.dos-columnas .seccion {
+    margin-top: 7px;
+}
+
 .dos-columnas .seccion h2 {
     color: #a3742a;
+    margin-bottom: 1px;
+}
+
+.dos-columnas .seccion p {
+    margin: 0 0 3px 0;
 }
 
 /* Firma dibujada en canvas, insertada en línea dentro de un .linea-campo */
 .firma-inline {
     display: block;
-    max-height: 50px;
+    max-height: 44px;
     max-width: 100%;
     object-fit: contain;
     border-bottom: 1px solid #333;
-    margin: 3px 0 8px 0;
+    margin: 2px 0 6px 0;
+}
+
+/* Observaciones: única sección que puede crecer y, si hace falta, pasar a otra hoja */
+.dos-columnas .observaciones-finales {
+    break-inside: auto;
+    margin-top: 10px;
 }

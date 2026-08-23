@@ -7,15 +7,15 @@
 </head>
 <body>
 
-    <div class="header-centrado">
-        {% if logo %}
-        <img class="logo-centrado" src="{{ logo }}">
-        {% endif %}
-        <h1>CLUB DE BIENESTAR CANINO FINO</h1>
-        <p class="subtitulo-centrado">CARTA DE ACEPTACIÓN DEL SERVICIO DE ESTANCIA DIURNA (GUARDERÍA BOUTIQUE)</p>
-    </div>
-
     <div class="dos-columnas">
+
+        <div class="header-club">
+            {% if logo %}
+            <img class="logo-club" src="{{ logo }}">
+            {% endif %}
+            <h1>CLUB DE BIENESTAR CANINO FINO</h1>
+            <p class="subtitulo-club">CARTA DE ACEPTACIÓN DEL SERVICIO DE ESTANCIA DIURNA (GUARDERÍA BOUTIQUE)</p>
+        </div>
 
         <p class="campo-titulo">Datos del propietario o tutor</p>
         <p class="linea-campo"><span class="label">Nombre:</span> <span class="linea-valor">{{ propietario }}</span></p>
