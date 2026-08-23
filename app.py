@@ -8,11 +8,16 @@ Estructura del proyecto:
     app.py                          -> tema visual, sidebar/navegación y enrutamiento (este archivo)
     forms/                          -> un módulo por formulario del sidebar, cada uno con su función render()
         __init__.py
-        carta_aceptacion.py         -> formulario "Carta de Aceptación de Servicios"
-    utils.py                        -> lógica: conversión de imágenes y render de PDF
-    templates/ficha.html            -> plantilla Jinja2 del PDF (texto legal fijo + campos dinámicos)
-    static/style.css                -> estilos del PDF
-    static/logo_club_canino.png     -> logo fijo del club (colócalo aquí)
+        carta_aceptacion.py         -> formulario "Carta de Aceptación de Servicios" (hospedaje/hotel)
+        estancia_diurna.py          -> formulario "Estancia Diurna" (guardería boutique)
+    utils.py                        -> lógica: conversión de imágenes y render de PDF (compartida por ambos formularios)
+    templates/
+        ficha.html                  -> plantilla del PDF de hospedaje
+        ficha_estancia_diurna.html  -> plantilla del PDF de estancia diurna
+    static/
+        style.css                   -> estilos base del PDF (compartidos)
+        style_estancia_diurna.css   -> estilos adicionales del PDF de estancia diurna (layout a 2 columnas)
+        logo_club_canino.jpeg       -> logo fijo del club (colócalo aquí)
 
 Para agregar un nuevo formulario al menú:
     1. Crear forms/nombre_formulario.py con una función render().
@@ -23,9 +28,9 @@ Para agregar un nuevo formulario al menú:
 
 import streamlit as st
 
-from forms import carta_aceptacion
+from forms import carta_aceptacion, estancia_diurna
 
-st.set_page_config(page_title="Canino Fino - Club de Bienestar", page_icon="🐾", layout="centered")
+st.set_page_config(page_title="Carta de Aceptación - Club Canino Fino", page_icon="🐾", layout="centered")
 
 # ---------------------------------------------------------------------------
 # Identidad visual — Club de Bienestar Canino Fino
@@ -176,20 +181,21 @@ st.markdown(BRAND_CSS, unsafe_allow_html=True)
 # ---------------------------------------------------------------------------
 NAV_INICIO = "Inicio"
 NAV_FICHA = "Carta de Aceptación"
+NAV_ESTANCIA_DIURNA = "Estancia Diurna"
 
 with st.sidebar:
     st.markdown(
         """
         <div class="sidebar-seal">🐾</div>
         <div class="sidebar-club-name">Canino Fino</div>
-        <div class="sidebar-tagline">SPA & Club de Bienestar</div>
+        <div class="sidebar-tagline">Club de Bienestar</div>
         <hr class="sidebar-divider">
         """,
         unsafe_allow_html=True,
     )
     seccion = st.radio(
         "Menú",
-        [NAV_INICIO, NAV_FICHA],
+        [NAV_INICIO, NAV_FICHA, NAV_ESTANCIA_DIURNA],
         label_visibility="collapsed",
     )
 
@@ -199,6 +205,8 @@ with st.sidebar:
 # ---------------------------------------------------------------------------
 if seccion == NAV_FICHA:
     carta_aceptacion.render()
+elif seccion == NAV_ESTANCIA_DIURNA:
+    estancia_diurna.render()
 # Si es "Inicio", no se renderiza nada: pantalla principal en blanco.
 
 # ---------------------------------------------------------------------------

@@ -64,19 +64,37 @@ def _file_to_base64(path: Path) -> str | None:
     return f"data:{mime};base64,{b64}"
 
 
-def render_ficha_pdf(**context) -> bytes:
-    """Renderiza templates/ficha.html con el contexto dado y devuelve los bytes del PDF.
+def _render_pdf(template_name: str, extra_css_file: str | None = None, **context) -> bytes:
+    """Renderiza un template de templates/ con el contexto dado y devuelve los bytes del PDF.
 
-    El CSS de static/style.css se inyecta directamente dentro de un <style>
-    en el HTML (en vez de enlazarlo como archivo externo) para que WeasyPrint
-    no necesite resolver rutas relativas — útil también cuando se despliega
-    en Streamlit Community Cloud.
+    El CSS se inyecta directamente dentro de un <style> en el HTML (en vez de
+    enlazarlo como archivo externo) para que WeasyPrint no necesite resolver
+    rutas relativas — útil también cuando se despliega en Streamlit Community Cloud.
 
-    El logo del club (static/logo_club_canino.png) se embebe automáticamente
-    aquí, así app.py no tiene que preocuparse por él en cada envío.
+    static/style.css siempre se incluye como base de marca. Si el documento
+    necesita reglas propias (ej. un layout a dos columnas), se pasa
+    `extra_css_file` con el nombre de un segundo archivo en static/ que se
+    concatena después, así puede sobreescribir puntualmente alguna regla
+    del CSS base sin duplicarlo todo.
+
+    El logo del club (static/logo_club_canino.jpeg) se embebe automáticamente
+    aquí, así los formularios no tienen que preocuparse por él.
     """
     css = (STATIC_DIR / "style.css").read_text(encoding="utf-8")
+    if extra_css_file:
+        css += "\n" + (STATIC_DIR / extra_css_file).read_text(encoding="utf-8")
+
     logo_b64 = _file_to_base64(STATIC_DIR / "logo_club_canino.jpeg")
-    template = _jinja_env.get_template("ficha.html")
+    template = _jinja_env.get_template(template_name)
     html_final = template.render(css=css, logo=logo_b64, **context)
     return HTML(string=html_final).write_pdf()
+
+
+def render_ficha_pdf(**context) -> bytes:
+    """Carta de Aceptación de Servicios de Hotel Boutique (hospedaje)."""
+    return _render_pdf("ficha.html", **context)
+
+
+def render_estancia_diurna_pdf(**context) -> bytes:
+    """Carta de Aceptación del Servicio de Estancia Diurna (Guardería Boutique)."""
+    return _render_pdf("ficha_estancia_diurna.html", extra_css_file="style_estancia_diurna.css", **context)

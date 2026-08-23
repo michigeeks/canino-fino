@@ -1,0 +1,154 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+{{ css }}
+</style>
+</head>
+<body>
+
+    <div class="header-centrado">
+        {% if logo %}
+        <img class="logo-centrado" src="{{ logo }}">
+        {% endif %}
+        <h1>CLUB DE BIENESTAR CANINO FINO</h1>
+        <p class="subtitulo-centrado">CARTA DE ACEPTACIÓN DEL SERVICIO DE ESTANCIA DIURNA (GUARDERÍA BOUTIQUE)</p>
+    </div>
+
+    <div class="dos-columnas">
+
+        <p class="campo-titulo">Datos del propietario o tutor</p>
+        <p class="linea-campo"><span class="label">Nombre:</span> <span class="linea-valor">{{ propietario }}</span></p>
+        <p class="linea-campo"><span class="label">Teléfono:</span> <span class="linea-valor">{{ telefono_propietario }}</span></p>
+        <p class="linea-campo"><span class="label">Correo:</span> <span class="linea-valor">{{ correo_propietario }}</span></p>
+        <p class="linea-campo"><span class="label">Identificación oficial:</span> <span class="linea-valor">{{ identificacion_oficial }}</span></p>
+
+        <p class="campo-titulo">Datos del perrito</p>
+        <p class="linea-campo"><span class="label">Nombre:</span> <span class="linea-valor">{{ perrito }}</span></p>
+        <p class="linea-campo">
+            <span class="label">Raza:</span> <span class="linea-valor">{{ raza }}</span>
+            &nbsp;&nbsp;
+            <span class="label">Edad:</span> <span class="linea-valor">{{ edad }}</span>
+            &nbsp;&nbsp;
+            <span class="label">Sexo:</span> <span class="linea-valor">{{ sexo }}</span>
+        </p>
+        <p class="linea-campo">
+            <span class="label">Peso:</span> <span class="linea-valor">{{ peso }}</span>
+            &nbsp;&nbsp;
+            <span class="label">Color:</span> <span class="linea-valor">{{ color }}</span>
+        </p>
+        <p class="linea-campo"><span class="label">Médico Veterinario:</span> <span class="linea-valor">{{ mvz_habitual }}</span></p>
+        <p class="linea-campo"><span class="label">Teléfono MVZ:</span> <span class="linea-valor">{{ tel_mvz }}</span></p>
+
+        <div class="seccion">
+            <h2>DECLARACIONES</h2>
+            <p>
+                Yo, <strong>{{ propietario }}</strong>, en mi carácter de propietario y/o responsable del perrito
+                antes identificado, manifiesto bajo protesta de decir verdad que: 1) Mi perro se encuentra en
+                condiciones adecuadas de salud para convivir con otros perros. 2) He presentado el carnet de
+                vacunación vigente y la información proporcionada es verdadera. 3) Informé cualquier padecimiento,
+                alergia, tratamiento, cirugía reciente o condición especial. 4) Informé antecedentes de agresividad,
+                ansiedad, miedo, escape, protección de recursos o cualquier conducta relevante. 5) Comprendo que la
+                estancia consiste en un espacio de convivencia, juego, descanso y enriquecimiento ambiental
+                supervisado.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>ACEPTACIÓN DE RIESGOS</h2>
+            <p>
+                Entiendo y acepto que, aun cuando Club de Bienestar Canino Fino implementa protocolos de manejo,
+                supervisión y bienestar, la convivencia puede ocasionar raspones, heridas superficiales, juegos
+                bruscos, empujones, mordidas leves, ensuciamiento del pelaje o cansancio físico derivado de la
+                actividad. Reconozco que estos riesgos son inherentes a la interacción social y no implican
+                negligencia cuando se hayan observado medidas razonables de supervisión.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>ATENCIÓN VETERINARIA</h2>
+            <p>
+                En caso de emergencia y de no ser posible localizarme oportunamente, autorizo el traslado de mi
+                perro al médico veterinario que el Club considere adecuado para salvaguardar su bienestar y acepto
+                cubrir los gastos médicos, medicamentos, estudios, hospitalización o cualquier otro costo generado.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>NORMAS DE CONVIVENCIA</h2>
+            <p>
+                Me comprometo a entregar a mi perro únicamente si se encuentra sano; no llevarlo si presenta
+                vómito, diarrea, tos, secreciones, fiebre, enfermedades contagiosas, pulgas o garrapatas; respetar
+                los horarios establecidos; informar cualquier cambio en su estado de salud y proporcionar
+                información veraz respecto a su comportamiento.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>AUTORIZACIÓN DE MANEJO</h2>
+            <p>
+                Autorizo al personal a realizar las maniobras necesarias para el manejo seguro durante la
+                estancia, incluyendo separación temporal, uso de correa, descanso individual y cualquier medida
+                preventiva. Comprendo que el Club podrá negar el ingreso, suspender o finalizar el servicio
+                cuando la conducta, estado de salud o nivel de estrés represente un riesgo.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>AUTORIZACIÓN DE IMAGEN</h2>
+            <p>
+                {% if autoriza_imagen == 'Sí' %}
+                    ( X ) Sí autorizo &nbsp;&nbsp;&nbsp; (&nbsp;&nbsp;) NO autorizo
+                {% else %}
+                    (&nbsp;&nbsp;) Sí autorizo &nbsp;&nbsp;&nbsp; ( X ) NO autorizo
+                {% endif %}
+                <br>
+                Autorizo el uso de fotografías y/o videos de mi perro para fines informativos, promocionales y
+                publicitarios de Club de Bienestar Canino Fino.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>ACEPTACIÓN</h2>
+            <p>
+                Declaro haber leído íntegramente el presente documento, haber recibido respuesta a todas mis
+                dudas y aceptar libremente las condiciones del servicio de estancia diurna. Entiendo que el
+                objetivo principal del servicio es brindar un ambiente seguro, controlado y de bienestar para
+                todos los perros participantes.
+            </p>
+        </div>
+
+        <p class="linea-campo">
+            <span class="label">Nombre y firma del propietario:</span>
+            {% if firma_propietario %}
+                <img class="firma-inline" src="{{ firma_propietario }}">
+            {% else %}
+                <span class="linea-valor">&nbsp;</span>
+            {% endif %}
+        </p>
+
+        <p class="linea-campo">
+            <span class="label">Responsable que recibe:</span>
+            {% if firma_responsable %}
+                <img class="firma-inline" src="{{ firma_responsable }}">
+            {% else %}
+                <span class="linea-valor">&nbsp;</span>
+            {% endif %}
+        </p>
+
+        <p class="linea-campo">
+            <span class="label">Hora de ingreso:</span> <span class="linea-valor">{{ hora_ingreso }}</span>
+        </p>
+        <p class="linea-campo">
+            <span class="label">Hora de salida:</span> <span class="linea-valor">{{ hora_salida }}</span>
+        </p>
+
+        <div class="observaciones-finales">
+            <span class="label">Observaciones:</span>
+            <div class="observaciones-box">{{ observaciones }}</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+/* Estilos adicionales — Carta de Aceptación de Estancia Diurna (Guardería Boutique)
+   Se cargan DESPUÉS de style.css, así que estas reglas pueden sobreescribir
+   puntualmente (ej. el color de .seccion h2) sin duplicar todo lo demás. */
+
+/* ---------- Encabezado centrado (logo arriba, título abajo) ---------- */
+.header-centrado {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.header-centrado .logo-centrado {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 6px auto;
+}
+
+.header-centrado h1 {
+    font-size: 15pt;
+    color: #a3742a;
+    margin: 4px 0;
+}
+
+.header-centrado .subtitulo-centrado {
+    font-size: 10.5pt;
+    font-weight: bold;
+    margin: 0 0 4px 0;
+}
+
+/* ---------- Layout a dos columnas (flujo tipo periódico) ---------- */
+.dos-columnas {
+    column-count: 2;
+    column-gap: 22px;
+    margin-top: 6px;
+}
+
+/* Evita que una sección o campo se corte a la mitad entre columnas/páginas */
+.dos-columnas .seccion,
+.dos-columnas p.linea-campo,
+.dos-columnas .observaciones-finales,
+.dos-columnas .campo-titulo {
+    break-inside: avoid;
+}
+
+/* Mantiene el título de sección pegado a su primer párrafo */
+.dos-columnas .seccion h2,
+.dos-columnas .campo-titulo {
+    break-after: avoid;
+}
+
+/* Encabezado simple de bloque de datos (no es una declaración legal) */
+.campo-titulo {
+    font-weight: bold;
+    font-size: 9.5pt;
+    text-transform: uppercase;
+    margin: 10px 0 4px 0;
+}
+
+/* En este formato las secciones legales usan el dorado de marca en vez del rojo */
+.dos-columnas .seccion h2 {
+    color: #a3742a;
+}
+
+/* Firma dibujada en canvas, insertada en línea dentro de un .linea-campo */
+.firma-inline {
+    display: block;
+    max-height: 50px;
+    max-width: 100%;
+    object-fit: contain;
+    border-bottom: 1px solid #333;
+    margin: 3px 0 8px 0;
+}
