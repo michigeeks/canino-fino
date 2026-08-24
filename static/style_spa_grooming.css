@@ -6,10 +6,14 @@
    Aceptación/Recepción). Usamos display:table en vez de flexbox porque
    WeasyPrint pagina tablas de forma mucho más predecible. */
 
-/* ---------- Encabezado centrado ---------- */
+/* ---------- Encabezado, con la fecha anclada arriba a la derecha ---------- */
+.doc-header {
+    position: relative;
+    margin-bottom: 14px;
+}
+
 .header-spa {
     text-align: center;
-    margin-bottom: 14px;
 }
 
 .header-spa .logo-spa {
@@ -34,6 +38,13 @@
     line-height: 1.25;
 }
 
+.fecha-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 9.5pt;
+}
+
 /* ---------- Encabezados de bloque de datos ---------- */
 .campo-titulo {
     font-weight: bold;
@@ -43,14 +54,44 @@
     margin: 10px 0 4px 0;
 }
 
-/* Info directa, sin líneas de subrayado (sistema digital) */
-.spa-doc .linea-campo {
+/* ---------- Campos alineados en columna (un campo por fila) ----------
+   display:table hace que TODAS las etiquetas reserven el mismo ancho,
+   así los valores siempre arrancan exactamente en la misma posición
+   (columna izquierda de valores perfectamente alineada), y la fila
+   completa ocupa el 100% del ancho — el mismo límite derecho que la
+   caja de "Observaciones del groomer canino". */
+.campo-fila {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
     margin: 2px 0;
 }
-.spa-doc .linea-valor {
-    display: inline;
-    min-width: 0;
-    border-bottom: none;
+
+.campo-fila .campo-label {
+    display: table-cell;
+    width: 175px;
+    font-weight: bold;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.campo-fila .campo-valor {
+    display: table-cell;
+    vertical-align: top;
+}
+
+/* Observaciones del dueño: sin caja visible, tamaño flexible según el texto */
+.observaciones-dueno {
+    margin: 8px 0;
+}
+
+.observaciones-dueno .campo-titulo {
+    margin-bottom: 2px;
+}
+
+.observaciones-dueno p {
+    margin: 0;
+    white-space: pre-wrap;
 }
 
 /* ---------- Dos columnas fijas y pareadas ---------- */
@@ -90,14 +131,33 @@
     text-align: justify;
 }
 
+/* Aceptación del servicio / Recepción de conformidad: siempre en la 2a hoja */
+.grid-2.pagina-2 {
+    page-break-before: always;
+    break-before: page;
+}
+
+/* Nombre y firma, centrados dentro de su propia columna */
+.firma-bloque {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.firma-bloque .firma-inline {
+    display: block;
+    margin: 4px auto 2px auto;
+}
+
+.firma-bloque .firma-nombre {
+    margin: 0;
+}
+
 /* Firma dibujada en canvas */
 .firma-inline {
-    display: block;
     max-height: 44px;
-    max-width: 100%;
+    max-width: 80%;
     object-fit: contain;
     border-bottom: 1px solid #333;
-    margin: 4px 0 2px 0;
 }
 
 .firma-nombre {
@@ -131,7 +191,7 @@
     height: 20px;
 }
 
-/* Caja en blanco para notas del groomer, agregadas después del servicio */
+/* Caja en blanco para notas del groomer, agregadas después del servicio (SÍ visible) */
 .caja-groomer {
     width: 100%;
     box-sizing: border-box;

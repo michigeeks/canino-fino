@@ -9,39 +9,35 @@
 
     <div class="spa-doc">
 
-        <div class="header-spa">
-            {% if logo %}
-            <img class="logo-spa" src="{{ logo }}">
-            {% endif %}
-            <h1>CANINO FINO SPA &amp; GROOMING BOUTIQUE</h1>
-            <p class="subtitulo-spa">CONSENTIMIENTO INFORMADO SOBRE EL SERVICIO BRINDADO A TU MASCOTA</p>
+        <div class="doc-header">
+            <div class="fecha-top">
+                <span class="label">Fecha:</span> <span>{{ fecha }}</span>
+            </div>
+            <div class="header-spa">
+                {% if logo %}
+                <img class="logo-spa" src="{{ logo }}">
+                {% endif %}
+                <h1>CANINO FINO SPA &amp; GROOMING BOUTIQUE</h1>
+                <p class="subtitulo-spa">CONSENTIMIENTO INFORMADO SOBRE EL SERVICIO BRINDADO A TU MASCOTA</p>
+            </div>
         </div>
 
-        <p class="linea-campo"><span class="label">Fecha:</span> <span class="linea-valor">{{ fecha }}</span></p>
-
         <p class="campo-titulo">Datos generales de la mascota</p>
-        <p class="linea-campo">
-            <span class="label">Nombre:</span> <span class="linea-valor">{{ perrito }}</span>
-            &nbsp;&nbsp;
-            <span class="label">Raza o tipo:</span> <span class="linea-valor">{{ raza }}</span>
-            &nbsp;&nbsp;
-            <span class="label">Edad:</span> <span class="linea-valor">{{ edad }}</span>
-        </p>
-        <p class="linea-campo"><span class="label">Nombre del dueño:</span> <span class="linea-valor">{{ propietario }}</span></p>
-        <p class="linea-campo"><span class="label">Domicilio:</span> <span class="linea-valor">{{ domicilio }}</span></p>
-        <p class="linea-campo"><span class="label">Teléfono:</span> <span class="linea-valor">{{ telefono }}</span></p>
+        <div class="campo-fila"><div class="campo-label">Nombre:</div><div class="campo-valor">{{ perrito }}</div></div>
+        <div class="campo-fila"><div class="campo-label">Raza o tipo:</div><div class="campo-valor">{{ raza }}</div></div>
+        <div class="campo-fila"><div class="campo-label">Edad:</div><div class="campo-valor">{{ edad }}</div></div>
+        <div class="campo-fila"><div class="campo-label">Nombre del dueño:</div><div class="campo-valor">{{ propietario }}</div></div>
+        <div class="campo-fila"><div class="campo-label">Domicilio:</div><div class="campo-valor">{{ domicilio }}</div></div>
+        <div class="campo-fila"><div class="campo-label">Teléfono:</div><div class="campo-valor">{{ telefono }}</div></div>
 
         <p class="campo-titulo">Antecedente de la mascota y observaciones del dueño</p>
-        <p class="linea-campo">
-            <span class="label">Ansiedad:</span> <span class="linea-valor">{{ ansiedad or "—" }}</span>
-            &nbsp;&nbsp;
-            <span class="label">Agresividad:</span> <span class="linea-valor">{{ agresividad or "—" }}</span>
-        </p>
-        <p class="linea-campo"><span class="label">Enfermedades y/o alergias:</span> <span class="linea-valor">{{ enfermedades_alergias or "—" }}</span></p>
+        <div class="campo-fila"><div class="campo-label">Ansiedad:</div><div class="campo-valor">{{ ansiedad or "—" }}</div></div>
+        <div class="campo-fila"><div class="campo-label">Agresividad:</div><div class="campo-valor">{{ agresividad or "—" }}</div></div>
+        <div class="campo-fila"><div class="campo-label">Enfermedades y/o alergias:</div><div class="campo-valor">{{ enfermedades_alergias or "—" }}</div></div>
 
-        <div class="observaciones-finales">
-            <span class="label">Observaciones:</span>
-            <div class="observaciones-box">{{ observaciones or "—" }}</div>
+        <div class="observaciones-dueno">
+            <p class="campo-titulo">Observaciones</p>
+            <p>{{ observaciones or "—" }}</p>
         </div>
 
         <div class="grid-2">
@@ -69,7 +65,7 @@
             </div>
         </div>
 
-        <div class="grid-2">
+        <div class="grid-2 pagina-2">
             <div class="col">
                 <h2>ACEPTACIÓN DEL SERVICIO</h2>
                 <p>
@@ -84,10 +80,12 @@
                     toda responsabilidad a Canino Fino y/o alguno de sus empleados, de cualquier situación que no
                     provenga de negligencia en la prestación del servicio.
                 </p>
-                {% if firma_aceptacion %}
-                    <img class="firma-inline" src="{{ firma_aceptacion }}">
-                {% endif %}
-                <p class="firma-nombre">Nombre y firma</p>
+                <div class="firma-bloque">
+                    {% if firma_aceptacion %}
+                        <img class="firma-inline" src="{{ firma_aceptacion }}">
+                    {% endif %}
+                    <p class="firma-nombre">Nombre y firma</p>
+                </div>
             </div>
             <div class="col">
                 <h2>RECEPCIÓN DE CONFORMIDAD</h2>
@@ -103,10 +101,12 @@
                     revisión inmediata, por lo que mi firma acredita mi conformidad con la recepción de mi mascota y
                     con el servicio brindado al momento de la entrega.
                 </p>
-                {% if firma_recepcion %}
-                    <img class="firma-inline" src="{{ firma_recepcion }}">
-                {% endif %}
-                <p class="firma-nombre">Nombre y firma</p>
+                <div class="firma-bloque">
+                    {% if firma_recepcion %}
+                        <img class="firma-inline" src="{{ firma_recepcion }}">
+                    {% endif %}
+                    <p class="firma-nombre">Nombre y firma</p>
+                </div>
             </div>
         </div>
 
