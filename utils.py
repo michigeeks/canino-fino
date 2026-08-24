@@ -51,13 +51,45 @@ def uploaded_file_to_base64(uploaded_file) -> str | None:
     return f"data:{mime};base64,{b64}"
 
 
-def _file_to_base64(path: Path) -> str | None:
+def _find_logo_file() -> Path | None:
+    """Busca el logo del club en static/ sin depender de acertarle al nombre exacto.
+
+    En Linux (Streamlit Cloud) los nombres de archivo son sensibles a
+    mayúsculas/minúsculas, así que si el archivo real no coincide EXACTO
+    con lo que el código espera (ej. subiste "Logo_Club_Canino.PNG" en vez
+    de "logo_club_canino.jpeg"), antes fallaba en silencio y el PDF salía
+    sin logo. Ahora se prueban varios nombres/extensiones típicos primero,
+    y si ninguno coincide, se busca cualquier archivo en static/ cuyo
+    nombre empiece con "logo" (sin importar mayúsculas ni extensión).
+    """
+    candidatos = [
+        "logo_club_canino.jpeg",
+        "logo_club_canino.jpg",
+        "logo_club_canino.png",
+        "logo.jpeg",
+        "logo.jpg",
+        "logo.png",
+    ]
+    for nombre in candidatos:
+        ruta = STATIC_DIR / nombre
+        if ruta.exists():
+            return ruta
+
+    if STATIC_DIR.exists():
+        for archivo in sorted(STATIC_DIR.iterdir()):
+            if archivo.is_file() and archivo.stem.lower().startswith("logo") and archivo.suffix.lower() in (".png", ".jpg", ".jpeg"):
+                return archivo
+
+    return None
+
+
+def _file_to_base64(path: Path | None) -> str | None:
     """Lee un archivo de imagen en disco y lo convierte a data-URI base64.
 
     Se usa para assets FIJOS (ej. el logo del club), que no vienen del
     formulario sino que ya viven en la carpeta static/ del proyecto.
     """
-    if not path.exists():
+    if path is None or not path.exists():
         return None
     mime = "image/png" if path.suffix.lower() == ".png" else "image/jpeg"
     b64 = base64.b64encode(path.read_bytes()).decode()
@@ -77,14 +109,14 @@ def _render_pdf(template_name: str, extra_css_file: str | None = None, **context
     concatena después, así puede sobreescribir puntualmente alguna regla
     del CSS base sin duplicarlo todo.
 
-    El logo del club (static/logo_club_canino.jpeg) se embebe automáticamente
-    aquí, así los formularios no tienen que preocuparse por él.
+    El logo del club se busca automáticamente en static/ (ver _find_logo_file)
+    y se embebe aquí, así los formularios no tienen que preocuparse por él.
     """
     css = (STATIC_DIR / "style.css").read_text(encoding="utf-8")
     if extra_css_file:
         css += "\n" + (STATIC_DIR / extra_css_file).read_text(encoding="utf-8")
 
-    logo_b64 = _file_to_base64(STATIC_DIR / "logo_club_canino.jpeg")
+    logo_b64 = _file_to_base64(_find_logo_file())
     template = _jinja_env.get_template(template_name)
     html_final = template.render(css=css, logo=logo_b64, **context)
     return HTML(string=html_final).write_pdf()
