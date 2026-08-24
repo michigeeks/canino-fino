@@ -94,12 +94,18 @@
     white-space: pre-wrap;
 }
 
-/* ---------- Dos columnas fijas y pareadas ---------- */
+/* ---------- Dos columnas fijas y pareadas ----------
+   OJO: border-spacing en una tabla CSS también agrega espacio en el
+   borde EXTERIOR (izquierdo/derecho), no solo entre columnas — por eso
+   la columna izquierda quedaba desplazada respecto al resto del texto.
+   Usamos border-spacing:0 y en su lugar padding solo en el lado
+   interior de cada columna, así el borde exterior queda flush con
+   todo lo demás. */
 .grid-2 {
     display: table;
     width: 100%;
     table-layout: fixed;
-    border-spacing: 24px 0;
+    border-spacing: 0;
     margin-top: 6px;
 }
 
@@ -107,6 +113,14 @@
     display: table-cell;
     width: 50%;
     vertical-align: top;
+}
+
+.grid-2 .col:first-child {
+    padding-right: 12px;
+}
+
+.grid-2 .col:last-child {
+    padding-left: 12px;
 }
 
 .grid-2 h2 {
