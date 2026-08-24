@@ -36,14 +36,6 @@ ENV/
 *.tmp
 *.temp
 
-# PDFs generados
-*.pdf
-
-# Imágenes generadas
-*.png
-*.jpg
-*.jpeg
-*.webp
 
 # Archivos temporales
 temp/
