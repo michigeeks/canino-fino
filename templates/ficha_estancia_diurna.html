@@ -7,124 +7,146 @@
 </head>
 <body>
 
-    <div class="spa-doc">
+    <div class="dos-columnas">
 
-        <div class="doc-header">
-            <div class="fecha-top">
-                <span class="label">Fecha:</span> <span>{{ fecha }}</span>
-            </div>
-            <div class="header-spa">
-                {% if logo %}
-                <img class="logo-spa" src="{{ logo }}">
+        <div class="header-club">
+            {% if logo %}
+            <img class="logo-club" src="{{ logo }}">
+            {% endif %}
+            <h1>CLUB DE BIENESTAR CANINO FINO</h1>
+            <p class="subtitulo-club">CARTA DE ACEPTACIÓN DEL SERVICIO DE ESTANCIA DIURNA (GUARDERÍA BOUTIQUE)</p>
+        </div>
+
+        <p class="campo-titulo">Datos del propietario o tutor</p>
+        <p class="linea-campo"><span class="label">Nombre:</span> <span class="linea-valor">{{ propietario }}</span></p>
+        <p class="linea-campo"><span class="label">Teléfono:</span> <span class="linea-valor">{{ telefono_propietario }}</span></p>
+        <p class="linea-campo"><span class="label">Correo:</span> <span class="linea-valor">{{ correo_propietario }}</span></p>
+        <p class="linea-campo"><span class="label">Identificación oficial:</span> <span class="linea-valor">{{ identificacion_oficial }}</span></p>
+
+        <p class="campo-titulo">Datos del perrito</p>
+        <p class="linea-campo"><span class="label">Nombre:</span> <span class="linea-valor">{{ perrito }}</span></p>
+        <p class="linea-campo">
+            <span class="label">Raza:</span> <span class="linea-valor">{{ raza }}</span>
+            &nbsp;&nbsp;
+            <span class="label">Edad:</span> <span class="linea-valor">{{ edad }}</span>
+            &nbsp;&nbsp;
+            <span class="label">Sexo:</span> <span class="linea-valor">{{ sexo }}</span>
+        </p>
+        <p class="linea-campo">
+            <span class="label">Peso:</span> <span class="linea-valor">{{ peso }}</span>
+            &nbsp;&nbsp;
+            <span class="label">Color:</span> <span class="linea-valor">{{ color }}</span>
+        </p>
+        <p class="linea-campo"><span class="label">Médico Veterinario:</span> <span class="linea-valor">{{ mvz_habitual }}</span></p>
+        <p class="linea-campo"><span class="label">Teléfono MVZ:</span> <span class="linea-valor">{{ tel_mvz }}</span></p>
+
+        <div class="seccion">
+            <h2>DECLARACIONES</h2>
+            <p>
+                Yo, <strong>{{ propietario }}</strong>, en mi carácter de propietario y/o responsable del perrito
+                antes identificado, manifiesto bajo protesta de decir verdad que: 1) Mi perro se encuentra en
+                condiciones adecuadas de salud para convivir con otros perros. 2) He presentado el carnet de
+                vacunación vigente y la información proporcionada es verdadera. 3) Informé cualquier padecimiento,
+                alergia, tratamiento, cirugía reciente o condición especial. 4) Informé antecedentes de agresividad,
+                ansiedad, miedo, escape, protección de recursos o cualquier conducta relevante. 5) Comprendo que la
+                estancia consiste en un espacio de convivencia, juego, descanso y enriquecimiento ambiental
+                supervisado.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>ACEPTACIÓN DE RIESGOS</h2>
+            <p>
+                Entiendo y acepto que, aun cuando Club de Bienestar Canino Fino implementa protocolos de manejo,
+                supervisión y bienestar, la convivencia puede ocasionar raspones, heridas superficiales, juegos
+                bruscos, empujones, mordidas leves, ensuciamiento del pelaje o cansancio físico derivado de la
+                actividad. Reconozco que estos riesgos son inherentes a la interacción social y no implican
+                negligencia cuando se hayan observado medidas razonables de supervisión.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>ATENCIÓN VETERINARIA</h2>
+            <p>
+                En caso de emergencia y de no ser posible localizarme oportunamente, autorizo el traslado de mi
+                perro al médico veterinario que el Club considere adecuado para salvaguardar su bienestar y acepto
+                cubrir los gastos médicos, medicamentos, estudios, hospitalización o cualquier otro costo generado.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>NORMAS DE CONVIVENCIA</h2>
+            <p>
+                Me comprometo a entregar a mi perro únicamente si se encuentra sano; no llevarlo si presenta
+                vómito, diarrea, tos, secreciones, fiebre, enfermedades contagiosas, pulgas o garrapatas; respetar
+                los horarios establecidos; informar cualquier cambio en su estado de salud y proporcionar
+                información veraz respecto a su comportamiento.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>AUTORIZACIÓN DE MANEJO</h2>
+            <p>
+                Autorizo al personal a realizar las maniobras necesarias para el manejo seguro durante la
+                estancia, incluyendo separación temporal, uso de correa, descanso individual y cualquier medida
+                preventiva. Comprendo que el Club podrá negar el ingreso, suspender o finalizar el servicio
+                cuando la conducta, estado de salud o nivel de estrés represente un riesgo.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h2>AUTORIZACIÓN DE IMAGEN</h2>
+            <p>
+                {% if autoriza_imagen == 'Sí' %}
+                    ( X ) Sí autorizo &nbsp;&nbsp;&nbsp; (&nbsp;&nbsp;) NO autorizo
+                {% else %}
+                    (&nbsp;&nbsp;) Sí autorizo &nbsp;&nbsp;&nbsp; ( X ) NO autorizo
                 {% endif %}
-                <h1>CANINO FINO SPA &amp; GROOMING BOUTIQUE</h1>
-                <p class="subtitulo-spa">CONSENTIMIENTO INFORMADO SOBRE EL SERVICIO BRINDADO A TU MASCOTA</p>
-            </div>
+                <br>
+                Autorizo el uso de fotografías y/o videos de mi perro para fines informativos, promocionales y
+                publicitarios de Club de Bienestar Canino Fino.
+            </p>
         </div>
 
-        <p class="campo-titulo">Datos generales de la mascota</p>
-        <div class="campo-fila"><div class="campo-label">Nombre:</div><div class="campo-valor">{{ perrito }}</div></div>
-        <div class="campo-fila"><div class="campo-label">Raza o tipo:</div><div class="campo-valor">{{ raza }}</div></div>
-        <div class="campo-fila"><div class="campo-label">Edad:</div><div class="campo-valor">{{ edad }}</div></div>
-        <div class="campo-fila"><div class="campo-label">Nombre del dueño:</div><div class="campo-valor">{{ propietario }}</div></div>
-        <div class="campo-fila"><div class="campo-label">Domicilio:</div><div class="campo-valor">{{ domicilio }}</div></div>
-        <div class="campo-fila"><div class="campo-label">Teléfono:</div><div class="campo-valor">{{ telefono }}</div></div>
-
-        <p class="campo-titulo">Antecedente de la mascota y observaciones del dueño</p>
-        <div class="campo-fila"><div class="campo-label">Ansiedad:</div><div class="campo-valor">{{ ansiedad or "—" }}</div></div>
-        <div class="campo-fila"><div class="campo-label">Agresividad:</div><div class="campo-valor">{{ agresividad or "—" }}</div></div>
-        <div class="campo-fila"><div class="campo-label">Enfermedades y/o alergias:</div><div class="campo-valor">{{ enfermedades_alergias or "—" }}</div></div>
-
-        <div class="observaciones-dueno">
-            <p class="campo-titulo">Observaciones</p>
-            <p>{{ observaciones or "—" }}</p>
+        <div class="seccion">
+            <h2>ACEPTACIÓN</h2>
+            <p>
+                Declaro haber leído íntegramente el presente documento, haber recibido respuesta a todas mis
+                dudas y aceptar libremente las condiciones del servicio de estancia diurna. Entiendo que el
+                objetivo principal del servicio es brindar un ambiente seguro, controlado y de bienestar para
+                todos los perros participantes.
+            </p>
         </div>
 
-        <div class="grid-2">
-            <div class="col">
-                <h2>REGLAMENTO DEL SPA</h2>
-                <ol>
-                    <li>En este lugar deberá prevalecer la paciencia, el respeto, la confianza e higiene para tu mascota.</li>
-                    <li>Todo servicio será brindado con respeto y amor, siempre dignificando a cada mascota y prevaleciendo el buen trato.</li>
-                    <li>El cupo es limitado por día, brindando calidad y calidez en los servicios.</li>
-                    <li>Ninguna mascota será jamás maltratada.</li>
-                    <li>Durante su estancia, tu mascota en ningún momento permanecerá sola.</li>
-                    <li>El mobiliario siempre estará en las mejores condiciones para la seguridad de tu mascota.</li>
-                    <li>Bajo ninguna circunstancia se utilizarán anestésicos.</li>
-                </ol>
-            </div>
-            <div class="col">
-                <h2>CONDICIONES DEL SERVICIO</h2>
-                <ol>
-                    <li>No se admiten mascotas con algún padecimiento.</li>
-                    <li>El dueño tiene la obligación de informar de cualquier patología o padecimiento que presente su mascota.</li>
-                    <li>Nos reservamos brindar el servicio, solo en caso de que se determine que la mascota no es apta o pueda dañarse su estado físico.</li>
-                    <li>Los precios varían de acuerdo a la raza, condiciones del pelo, piel o talla de su mascota y/o comportamiento.</li>
-                    <li>Cualquier observación, aclaración o inconformidad derivada del servicio deberá ser planteada entre ambas partes a fin de que conozcan los hechos y busquen la solución de manera respetuosa y objetiva antes de realizar manifestaciones en redes sociales o medios públicos.</li>
-                </ol>
-            </div>
+        <p class="linea-campo">
+            <span class="label">Nombre y firma del propietario:</span>
+            {% if firma_propietario %}
+                <img class="firma-inline" src="{{ firma_propietario }}">
+            {% else %}
+                <span class="linea-valor">&nbsp;</span>
+            {% endif %}
+        </p>
+
+        <p class="linea-campo">
+            <span class="label">Responsable que recibe:</span>
+            {% if firma_responsable %}
+                <img class="firma-inline" src="{{ firma_responsable }}">
+            {% else %}
+                <span class="linea-valor">&nbsp;</span>
+            {% endif %}
+        </p>
+
+        <p class="linea-campo">
+            <span class="label">Hora de ingreso:</span> <span class="linea-valor">{{ hora_ingreso }}</span>
+        </p>
+        <p class="linea-campo">
+            <span class="label">Hora de salida:</span> <span class="linea-valor">{{ hora_salida }}</span>
+        </p>
+
+        <div class="observaciones-finales">
+            <span class="label">Observaciones:</span>
+            <div class="observaciones-box">{{ observaciones }}</div>
         </div>
-
-        <div class="grid-2 pagina-2">
-            <div class="col">
-                <h2>ACEPTACIÓN DEL SERVICIO</h2>
-                <p>
-                    El signatario del presente documento recibió información clara sobre los beneficios y/o riesgos
-                    del proceso estético de mi mascota, siendo sabedor que de forma involuntaria mi mascota puede
-                    sufrir irritaciones, cortadas de la piel por exceso de pelo en malas condiciones, irritación
-                    perianal por rascado de la mascota, irritación de ojos por sensibilidad al shampoo.
-                </p>
-                <p>
-                    Conforme a la información que he leído y comprendido, he podido preguntar y aclarar mis dudas,
-                    por eso he tomado consciente y libre la decisión de autorizar el procedimiento. Deslindando de
-                    toda responsabilidad a Canino Fino y/o alguno de sus empleados, de cualquier situación que no
-                    provenga de negligencia en la prestación del servicio.
-                </p>
-                <div class="firma-bloque">
-                    {% if firma_aceptacion %}
-                        <img class="firma-inline" src="{{ firma_aceptacion }}">
-                    {% endif %}
-                    <p class="firma-nombre">Nombre y firma</p>
-                </div>
-            </div>
-            <div class="col">
-                <h2>RECEPCIÓN DE CONFORMIDAD</h2>
-                <p>
-                    Confirmo que recibo a mi mascota de conformidad y que, al momento de la entrega, observo que su
-                    estado general, higiene, presentación y condiciones físicas visibles corresponden al servicio
-                    realizado. Asimismo, manifiesto que el resultado del servicio me fue mostrado y explicado por el
-                    personal de Canino Fino.
-                </p>
-                <p>
-                    Entiendo que cualquier observación relacionada con las condiciones visibles de mi mascota deberá
-                    hacerse del conocimiento del personal antes de abandonar las instalaciones, permitiendo así su
-                    revisión inmediata, por lo que mi firma acredita mi conformidad con la recepción de mi mascota y
-                    con el servicio brindado al momento de la entrega.
-                </p>
-                <div class="firma-bloque">
-                    {% if firma_recepcion %}
-                        <img class="firma-inline" src="{{ firma_recepcion }}">
-                    {% endif %}
-                    <p class="firma-nombre">Nombre y firma</p>
-                </div>
-            </div>
-        </div>
-
-        <p class="campo-titulo">Servicios posteriores</p>
-        <table class="tabla-servicios">
-            <tr>
-                <th>Fecha</th>
-                <th>Recepción</th>
-                <th>Entrega</th>
-            </tr>
-            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-        </table>
-
-        <p class="campo-titulo">Observaciones del groomer canino</p>
-        <div class="caja-groomer"></div>
 
     </div>
 
