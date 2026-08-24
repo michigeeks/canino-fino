@@ -6,7 +6,13 @@
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    /* 'Helvetica Neue' y Arial son fuentes de escritorio (Windows/Mac) que NO
+       existen en el contenedor Linux de Streamlit Cloud. 'Liberation Sans'
+       es métricamente compatible con Arial (mismos anchos de carácter) y se
+       instala vía packages.txt, así el PDF ajusta líneas/columnas igual en
+       local y en producción. Se deja Helvetica Neue/Arial primero por si
+       corres esto en tu máquina y sí las tienes — no afecta si no existen. */
+    font-family: 'Helvetica Neue', Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
     color: #222;
     font-size: 9.5pt;
     line-height: 1.35;
