@@ -28,7 +28,7 @@ Para agregar un nuevo formulario al menú:
 
 import streamlit as st
 
-from forms import carta_aceptacion, estancia_diurna
+from forms import carta_aceptacion, estancia_diurna, spa_grooming
 
 st.set_page_config(page_title="Carta de Aceptación - Club Canino Fino", page_icon="🐾", layout="centered")
 
@@ -182,6 +182,7 @@ st.markdown(BRAND_CSS, unsafe_allow_html=True)
 NAV_INICIO = "Inicio"
 NAV_FICHA = "Carta de Aceptación"
 NAV_ESTANCIA_DIURNA = "Estancia Diurna"
+NAV_SPA_GROOMING = "Spa & Grooming"
 
 with st.sidebar:
     st.markdown(
@@ -195,7 +196,7 @@ with st.sidebar:
     )
     seccion = st.radio(
         "Menú",
-        [NAV_INICIO, NAV_FICHA, NAV_ESTANCIA_DIURNA],
+        [NAV_INICIO, NAV_FICHA, NAV_ESTANCIA_DIURNA, NAV_SPA_GROOMING],
         label_visibility="collapsed",
     )
 
@@ -207,6 +208,8 @@ if seccion == NAV_FICHA:
     carta_aceptacion.render()
 elif seccion == NAV_ESTANCIA_DIURNA:
     estancia_diurna.render()
+elif seccion == NAV_SPA_GROOMING:
+    spa_grooming.render()
 # Si es "Inicio", no se renderiza nada: pantalla principal en blanco.
 
 # ---------------------------------------------------------------------------

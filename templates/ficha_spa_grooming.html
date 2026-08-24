@@ -1,0 +1,132 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+{{ css }}
+</style>
+</head>
+<body>
+
+    <div class="spa-doc">
+
+        <div class="header-spa">
+            {% if logo %}
+            <img class="logo-spa" src="{{ logo }}">
+            {% endif %}
+            <h1>CANINO FINO SPA &amp; GROOMING BOUTIQUE</h1>
+            <p class="subtitulo-spa">CONSENTIMIENTO INFORMADO SOBRE EL SERVICIO BRINDADO A TU MASCOTA</p>
+        </div>
+
+        <p class="linea-campo"><span class="label">Fecha:</span> <span class="linea-valor">{{ fecha }}</span></p>
+
+        <p class="campo-titulo">Datos generales de la mascota</p>
+        <p class="linea-campo">
+            <span class="label">Nombre:</span> <span class="linea-valor">{{ perrito }}</span>
+            &nbsp;&nbsp;
+            <span class="label">Raza o tipo:</span> <span class="linea-valor">{{ raza }}</span>
+            &nbsp;&nbsp;
+            <span class="label">Edad:</span> <span class="linea-valor">{{ edad }}</span>
+        </p>
+        <p class="linea-campo"><span class="label">Nombre del dueño:</span> <span class="linea-valor">{{ propietario }}</span></p>
+        <p class="linea-campo"><span class="label">Domicilio:</span> <span class="linea-valor">{{ domicilio }}</span></p>
+        <p class="linea-campo"><span class="label">Teléfono:</span> <span class="linea-valor">{{ telefono }}</span></p>
+
+        <p class="campo-titulo">Antecedente de la mascota y observaciones del dueño</p>
+        <p class="linea-campo">
+            <span class="label">Ansiedad:</span> <span class="linea-valor">{{ ansiedad or "—" }}</span>
+            &nbsp;&nbsp;
+            <span class="label">Agresividad:</span> <span class="linea-valor">{{ agresividad or "—" }}</span>
+        </p>
+        <p class="linea-campo"><span class="label">Enfermedades y/o alergias:</span> <span class="linea-valor">{{ enfermedades_alergias or "—" }}</span></p>
+
+        <div class="observaciones-finales">
+            <span class="label">Observaciones:</span>
+            <div class="observaciones-box">{{ observaciones or "—" }}</div>
+        </div>
+
+        <div class="grid-2">
+            <div class="col">
+                <h2>REGLAMENTO DEL SPA</h2>
+                <ol>
+                    <li>En este lugar deberá prevalecer la paciencia, el respeto, la confianza e higiene para tu mascota.</li>
+                    <li>Todo servicio será brindado con respeto y amor, siempre dignificando a cada mascota y prevaleciendo el buen trato.</li>
+                    <li>El cupo es limitado por día, brindando calidad y calidez en los servicios.</li>
+                    <li>Ninguna mascota será jamás maltratada.</li>
+                    <li>Durante su estancia, tu mascota en ningún momento permanecerá sola.</li>
+                    <li>El mobiliario siempre estará en las mejores condiciones para la seguridad de tu mascota.</li>
+                    <li>Bajo ninguna circunstancia se utilizarán anestésicos.</li>
+                </ol>
+            </div>
+            <div class="col">
+                <h2>CONDICIONES DEL SERVICIO</h2>
+                <ol>
+                    <li>No se admiten mascotas con algún padecimiento.</li>
+                    <li>El dueño tiene la obligación de informar de cualquier patología o padecimiento que presente su mascota.</li>
+                    <li>Nos reservamos brindar el servicio, solo en caso de que se determine que la mascota no es apta o pueda dañarse su estado físico.</li>
+                    <li>Los precios varían de acuerdo a la raza, condiciones del pelo, piel o talla de su mascota y/o comportamiento.</li>
+                    <li>Cualquier observación, aclaración o inconformidad derivada del servicio deberá ser planteada entre ambas partes a fin de que conozcan los hechos y busquen la solución de manera respetuosa y objetiva antes de realizar manifestaciones en redes sociales o medios públicos.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="col">
+                <h2>ACEPTACIÓN DEL SERVICIO</h2>
+                <p>
+                    El signatario del presente documento recibió información clara sobre los beneficios y/o riesgos
+                    del proceso estético de mi mascota, siendo sabedor que de forma involuntaria mi mascota puede
+                    sufrir irritaciones, cortadas de la piel por exceso de pelo en malas condiciones, irritación
+                    perianal por rascado de la mascota, irritación de ojos por sensibilidad al shampoo.
+                </p>
+                <p>
+                    Conforme a la información que he leído y comprendido, he podido preguntar y aclarar mis dudas,
+                    por eso he tomado consciente y libre la decisión de autorizar el procedimiento. Deslindando de
+                    toda responsabilidad a Canino Fino y/o alguno de sus empleados, de cualquier situación que no
+                    provenga de negligencia en la prestación del servicio.
+                </p>
+                {% if firma_aceptacion %}
+                    <img class="firma-inline" src="{{ firma_aceptacion }}">
+                {% endif %}
+                <p class="firma-nombre">Nombre y firma</p>
+            </div>
+            <div class="col">
+                <h2>RECEPCIÓN DE CONFORMIDAD</h2>
+                <p>
+                    Confirmo que recibo a mi mascota de conformidad y que, al momento de la entrega, observo que su
+                    estado general, higiene, presentación y condiciones físicas visibles corresponden al servicio
+                    realizado. Asimismo, manifiesto que el resultado del servicio me fue mostrado y explicado por el
+                    personal de Canino Fino.
+                </p>
+                <p>
+                    Entiendo que cualquier observación relacionada con las condiciones visibles de mi mascota deberá
+                    hacerse del conocimiento del personal antes de abandonar las instalaciones, permitiendo así su
+                    revisión inmediata, por lo que mi firma acredita mi conformidad con la recepción de mi mascota y
+                    con el servicio brindado al momento de la entrega.
+                </p>
+                {% if firma_recepcion %}
+                    <img class="firma-inline" src="{{ firma_recepcion }}">
+                {% endif %}
+                <p class="firma-nombre">Nombre y firma</p>
+            </div>
+        </div>
+
+        <p class="campo-titulo">Servicios posteriores</p>
+        <table class="tabla-servicios">
+            <tr>
+                <th>Fecha</th>
+                <th>Recepción</th>
+                <th>Entrega</th>
+            </tr>
+            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        </table>
+
+        <p class="campo-titulo">Observaciones del groomer canino</p>
+        <div class="caja-groomer"></div>
+
+    </div>
+
+</body>
+</html>

@@ -98,3 +98,8 @@ def render_ficha_pdf(**context) -> bytes:
 def render_estancia_diurna_pdf(**context) -> bytes:
     """Carta de Aceptación del Servicio de Estancia Diurna (Guardería Boutique)."""
     return _render_pdf("ficha_estancia_diurna.html", extra_css_file="style_estancia_diurna.css", **context)
+
+
+def render_spa_grooming_pdf(**context) -> bytes:
+    """Consentimiento Informado — Canino Fino Spa & Grooming Boutique."""
+    return _render_pdf("ficha_spa_grooming.html", extra_css_file="style_spa_grooming.css", **context)

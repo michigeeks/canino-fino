@@ -1,0 +1,142 @@
+/* Estilos adicionales — Consentimiento Informado de Spa & Grooming Boutique
+   Se cargan DESPUÉS de style.css. Reutiliza .seccion, .linea-campo, etc.
+   de la base, y agrega el layout de dos columnas FIJAS (no flujo tipo
+   periódico, porque aquí cada columna es un bloque con nombre propio que
+   debe mantenerse pareado con su contraparte: Reglamento/Condiciones,
+   Aceptación/Recepción). Usamos display:table en vez de flexbox porque
+   WeasyPrint pagina tablas de forma mucho más predecible. */
+
+/* ---------- Encabezado centrado ---------- */
+.header-spa {
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.header-spa .logo-spa {
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 6px auto;
+}
+
+.header-spa h1 {
+    font-size: 13pt;
+    color: #a3742a;
+    margin: 0 0 3px 0;
+    line-height: 1.2;
+}
+
+.header-spa .subtitulo-spa {
+    font-size: 9.5pt;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.25;
+}
+
+/* ---------- Encabezados de bloque de datos ---------- */
+.campo-titulo {
+    font-weight: bold;
+    font-size: 9.5pt;
+    text-transform: uppercase;
+    color: #a3742a;
+    margin: 10px 0 4px 0;
+}
+
+/* Info directa, sin líneas de subrayado (sistema digital) */
+.spa-doc .linea-campo {
+    margin: 2px 0;
+}
+.spa-doc .linea-valor {
+    display: inline;
+    min-width: 0;
+    border-bottom: none;
+}
+
+/* ---------- Dos columnas fijas y pareadas ---------- */
+.grid-2 {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 24px 0;
+    margin-top: 6px;
+}
+
+.grid-2 .col {
+    display: table-cell;
+    width: 50%;
+    vertical-align: top;
+}
+
+.grid-2 h2 {
+    font-size: 9.5pt;
+    font-weight: bold;
+    color: #a3742a;
+    margin: 0 0 4px 0;
+}
+
+.grid-2 ol {
+    margin: 0;
+    padding-left: 16px;
+}
+
+.grid-2 ol li {
+    margin-bottom: 4px;
+    text-align: justify;
+}
+
+.grid-2 p {
+    margin: 0 0 6px 0;
+    text-align: justify;
+}
+
+/* Firma dibujada en canvas */
+.firma-inline {
+    display: block;
+    max-height: 44px;
+    max-width: 100%;
+    object-fit: contain;
+    border-bottom: 1px solid #333;
+    margin: 4px 0 2px 0;
+}
+
+.firma-nombre {
+    font-size: 8.5pt;
+    color: #444;
+    margin-top: 2px;
+}
+
+/* ---------- Servicios posteriores (registro físico a futuro) ---------- */
+.tabla-servicios {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+    font-size: 9pt;
+}
+
+.tabla-servicios th,
+.tabla-servicios td {
+    border: 1px solid #999;
+    padding: 8px 6px;
+}
+
+.tabla-servicios th {
+    background: #f4ede1;
+    color: #a3742a;
+    text-transform: uppercase;
+    font-size: 8.5pt;
+}
+
+.tabla-servicios td {
+    height: 20px;
+}
+
+/* Caja en blanco para notas del groomer, agregadas después del servicio */
+.caja-groomer {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    border-radius: 3px;
+    min-height: 50px;
+    margin-top: 4px;
+}
