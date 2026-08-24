@@ -1,11 +1,3 @@
-# Dependencias del sistema (apt) requeridas por WeasyPrint en Streamlit Community Cloud.
-# Sin este archivo, WeasyPrint puede fallar silenciosamente o renderizar el PDF
-# con una fuente/librerías distintas a las de tu entorno local, causando que
-# el mismo HTML/CSS se vea diferente (saltos de línea, columnas, espaciado).
-#
-# Streamlit Cloud instala automáticamente estos paquetes con apt-get al
-# desplegar. Coloca este archivo en la RAÍZ del repositorio (mismo nivel
-# que app.py y requirements.txt).
 
 python3-cffi
 python3-brotli
@@ -15,9 +7,5 @@ libgdk-pixbuf2.0-0
 libcairo2
 shared-mime-info
 
-# Fuentes: Helvetica Neue/Arial no existen en Linux. fonts-liberation
-# instala "Liberation Sans", que es métricamente compatible con Arial
-# (mismos anchos de carácter), así el texto ajusta las líneas igual que
-# en tu máquina local. Ver también el cambio en static/style.css.
 fonts-liberation
 fonts-dejavu-core
