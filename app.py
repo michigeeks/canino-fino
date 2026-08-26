@@ -172,17 +172,13 @@ h3 {
 """
 st.markdown(BRAND_CSS, unsafe_allow_html=True)
 
-# Header de marca — eliminado por el momento (a pedido). El CSS de
-# .brand-header/.brand-seal/.brand-title queda quitado también; si se
-# vuelve a activar, restaurar ambos bloques.
-
 # ---------------------------------------------------------------------------
 # Menú lateral
 # ---------------------------------------------------------------------------
 NAV_INICIO = "Inicio"
-NAV_FICHA = "Carta de Aceptación"
-NAV_ESTANCIA_DIURNA = "Estancia Diurna"
-NAV_SPA_GROOMING = "Spa & Grooming"
+NAV_FICHA = "Carta de Aceptación - Hotel Boutique"
+NAV_ESTANCIA_DIURNA = "Carta de Aceptación - Guardería Boutique"
+NAV_SPA_GROOMING = "Consentimiento Informado"
 
 with st.sidebar:
     st.markdown(

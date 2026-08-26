@@ -19,6 +19,7 @@ from utils import canvas_to_base64_png, render_ficha_pdf
 def render() -> None:
     """Dibuja el formulario completo y gestiona la generación del PDF."""
     with st.form("ficha_form", clear_on_submit=False):
+        st.title("Carta de Aceptación de Servicios de Hotel Boutique")
 
         st.subheader("Datos de estancia")
         col1, col2, col3 = st.columns(3)
@@ -43,8 +44,8 @@ def render() -> None:
             raza = st.text_input("Raza")
             edad = st.number_input("Edad", min_value=1, max_value=100, step=1, format="%d")
         with col2:
-            sexo = st.selectbox("Sexo", ["", "Macho", "Hembra"])
-            peso = st.number_input("Peso aproximado (kg)", min_value=0.0, max_value=100.0, step=0.5)
+            sexo = st.radio("Sexo", ["Macho", "Hembra"], horizontal=True, index=None)
+            peso = st.number_input("Peso aproximado (kg)", min_value=0.0, step=0.5, format="%.1f")
 
         st.subheader("Datos veterinarios")
         col1, col2 = st.columns(2)

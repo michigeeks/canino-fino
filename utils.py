@@ -1,10 +1,3 @@
-"""
-Funciones auxiliares para la ficha de paciente.
-
-Separado de app.py para que la lógica de negocio (conversión de imágenes,
-render de PDF) no esté mezclada con el código de la interfaz de Streamlit.
-"""
-
 import base64
 import io
 from pathlib import Path
@@ -52,16 +45,6 @@ def uploaded_file_to_base64(uploaded_file) -> str | None:
 
 
 def _find_logo_file() -> Path | None:
-    """Busca el logo del club en static/ sin depender de acertarle al nombre exacto.
-
-    En Linux (Streamlit Cloud) los nombres de archivo son sensibles a
-    mayúsculas/minúsculas, así que si el archivo real no coincide EXACTO
-    con lo que el código espera (ej. subiste "Logo_Club_Canino.PNG" en vez
-    de "logo_club_canino.jpeg"), antes fallaba en silencio y el PDF salía
-    sin logo. Ahora se prueban varios nombres/extensiones típicos primero,
-    y si ninguno coincide, se busca cualquier archivo en static/ cuyo
-    nombre empiece con "logo" (sin importar mayúsculas ni extensión).
-    """
     candidatos = [
         "logo_club_canino.jpeg",
         "logo_club_canino.jpg",

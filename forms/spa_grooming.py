@@ -17,6 +17,8 @@ from utils import canvas_to_base64_png, render_spa_grooming_pdf
 def render() -> None:
     """Dibuja el formulario completo y gestiona la generación del PDF."""
     with st.form("spa_grooming_form", clear_on_submit=False):
+        st.title("Consentimiento Informado Sobre el Servicio Brindado a tu Mascota")
+
         st.subheader("Datos de consentimiento")
         fecha = st.date_input("Fecha", value=date.today())
 
