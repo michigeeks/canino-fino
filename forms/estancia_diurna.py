@@ -4,6 +4,7 @@ Formulario: Carta de Aceptación del Servicio de Estancia Diurna (Guardería Bou
 Mismo patrón que forms/carta_aceptacion.py: un módulo por formulario, con
 una función render() que app.py invoca según la opción de menú seleccionada.
 """
+from datetime import date
 
 import streamlit as st
 from streamlit_drawable_canvas import st_canvas
@@ -19,9 +20,9 @@ def render() -> None:
         col1, col2 = st.columns(2)
         with col1:
             propietario = st.text_input("Nombre del propietario/tutor *")
-            correo_propietario = st.text_input("Correo")
+            correo_propietario = st.text_input("Correo", placeholder="john@gmail.com")
         with col2:
-            telefono_propietario = st.text_input("Teléfono")
+            telefono_propietario = st.text_input("Teléfono", placeholder="55 1234 5678", key="nombre_tutor")
             identificacion_oficial = st.text_input("Identificación oficial")
 
         st.subheader("Datos del perrito")
@@ -29,10 +30,10 @@ def render() -> None:
         with col1:
             perrito = st.text_input("Nombre del perrito *")
             raza = st.text_input("Raza")
-            edad = st.text_input("Edad")
+            edad = st.number_input("Edad", min_value=1, max_value=100, step=1, format="%d")
         with col2:
             sexo = st.selectbox("Sexo", ["", "Macho", "Hembra"])
-            peso = st.text_input("Peso")
+            peso = st.number_input("Peso")
             color = st.text_input("Color")
 
         st.subheader("Datos veterinarios")
@@ -40,7 +41,7 @@ def render() -> None:
         with col1:
             mvz_habitual = st.text_input("Médico Veterinario")
         with col2:
-            tel_mvz = st.text_input("Teléfono MVZ")
+            tel_mvz = st.text_input("Teléfono MVZ", placeholder="55 1234 5678", key="nombre_mvz")
 
         st.subheader("Autorización de imagen")
         autoriza_imagen = st.radio(
@@ -53,9 +54,10 @@ def render() -> None:
         st.subheader("Horario de la visita")
         col1, col2 = st.columns(2)
         with col1:
-            hora_ingreso = st.text_input("Hora de ingreso")
+            hora_ingreso = st.date_input("Hora de ingreso", value=date.today())
+
         with col2:
-            hora_salida = st.text_input("Hora de salida")
+            hora_salida = st.date_input("Hora de salida")
 
         observaciones = st.text_area("Observaciones")
 
@@ -63,7 +65,7 @@ def render() -> None:
         st.caption("Dibuja con el dedo (móvil/tablet) o el mouse")
         firma_propietario_canvas = st_canvas(
             stroke_width=3,
-            stroke_color="#000000",
+            stroke_color="#0000A0",
             background_color="#FFFFFF",
             height=150,
             width=400,
@@ -72,9 +74,10 @@ def render() -> None:
         )
 
         st.subheader("Firma del responsable que recibe")
+        st.caption("Dibuja con el dedo (móvil/tablet) o el mouse")
         firma_responsable_canvas = st_canvas(
             stroke_width=3,
-            stroke_color="#000000",
+            stroke_color="#0000A0",
             background_color="#FFFFFF",
             height=150,
             width=400,
@@ -102,8 +105,8 @@ def render() -> None:
                 mvz_habitual=mvz_habitual,
                 tel_mvz=tel_mvz,
                 autoriza_imagen=autoriza_imagen,
-                hora_ingreso=hora_ingreso,
-                hora_salida=hora_salida,
+                hora_ingreso=hora_ingreso.strftime("%d/%m/%Y"),
+                hora_salida=hora_salida.strftime("%d/%m/%Y"),
                 observaciones=observaciones or "",
                 firma_propietario=canvas_to_base64_png(firma_propietario_canvas),
                 firma_responsable=canvas_to_base64_png(firma_responsable_canvas),
@@ -111,7 +114,7 @@ def render() -> None:
 
             st.success("PDF generado correctamente.")
             st.download_button(
-                label="⬇️ Descargar carta en PDF",
+                label="⬇️ Descargar PDF",
                 data=pdf_bytes,
                 file_name=f"carta_estancia_diurna_{perrito.replace(' ', '_').lower()}.pdf",
                 mime="application/pdf",

@@ -109,8 +109,8 @@ def render() -> None:
         else:
             pdf_bytes = render_ficha_pdf(
                 fecha=fecha.strftime("%d/%m/%Y"),
-                ingreso=ingreso,
-                salida_estimada=salida_estimada,
+                ingreso=ingreso.strftime("%d/%m/%Y"),
+                salida_estimada=salida_estimada.strftime("%d/%m/%Y"),
                 propietario=propietario,
                 telefono_propietario=telefono_propietario,
                 perrito=perrito,
