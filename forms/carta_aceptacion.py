@@ -44,7 +44,7 @@ def render() -> None:
             edad = st.number_input("Edad", min_value=1, max_value=100, step=1, format="%d")
         with col2:
             sexo = st.selectbox("Sexo", ["", "Macho", "Hembra"])
-            peso = st.number_input("Peso aproximado")
+            peso = st.number_input("Peso aproximado (kg)", min_value=0.0, max_value=100.0, step=0.5)
 
         st.subheader("Datos veterinarios")
         col1, col2 = st.columns(2)

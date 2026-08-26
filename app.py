@@ -189,7 +189,7 @@ with st.sidebar:
         """
         <div class="sidebar-seal">🐾</div>
         <div class="sidebar-club-name">Canino Fino</div>
-        <div class="sidebar-tagline">Club de Bienestar</div>
+        <div class="sidebar-tagline">Club de Bienestar & Hotel Boutique</div>
         <hr class="sidebar-divider">
         """,
         unsafe_allow_html=True,

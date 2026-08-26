@@ -17,7 +17,7 @@ from utils import canvas_to_base64_png, render_spa_grooming_pdf
 def render() -> None:
     """Dibuja el formulario completo y gestiona la generación del PDF."""
     with st.form("spa_grooming_form", clear_on_submit=False):
-
+        st.subheader("Datos de consentimiento")
         fecha = st.date_input("Fecha", value=date.today())
 
         st.subheader("Datos generales de la mascota")
@@ -25,10 +25,10 @@ def render() -> None:
         with col1:
             perrito = st.text_input("Nombre de la mascota *")
             raza = st.text_input("Raza o tipo")
-            edad = st.text_input("Edad")
+            edad = st.number_input("Edad", min_value=1, max_value=100, step=1, format="%d")
         with col2:
             propietario = st.text_input("Nombre del dueño *")
-            telefono = st.text_input("Teléfono")
+            telefono = st.text_input("Teléfono", placeholder="55 1234 5678", key="nombre_tutor")
             domicilio = st.text_input("Domicilio")
 
         st.subheader("Antecedente de la mascota y observaciones del dueño")
@@ -44,7 +44,7 @@ def render() -> None:
         st.caption("Dibuja con el dedo (móvil/tablet) o el mouse")
         firma_aceptacion_canvas = st_canvas(
             stroke_width=3,
-            stroke_color="#000000",
+            stroke_color="#0000A0",
             background_color="#FFFFFF",
             height=150,
             width=400,
@@ -53,10 +53,10 @@ def render() -> None:
         )
 
         st.subheader("Firma — Recepción de conformidad")
-        st.caption("Se firma al momento de recoger a la mascota; puede dejarse en blanco y firmarse después en físico")
+        st.caption("Dibuja con el dedo (móvil/tablet) o el mouse")
         firma_recepcion_canvas = st_canvas(
             stroke_width=3,
-            stroke_color="#000000",
+            stroke_color="#0000A0",
             background_color="#FFFFFF",
             height=150,
             width=400,
@@ -88,7 +88,7 @@ def render() -> None:
 
             st.success("PDF generado correctamente.")
             st.download_button(
-                label="⬇️ Descargar consentimiento en PDF",
+                label="⬇️ Descargar PDF",
                 data=pdf_bytes,
                 file_name=f"consentimiento_spa_{perrito.replace(' ', '_').lower()}.pdf",
                 mime="application/pdf",
