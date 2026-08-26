@@ -25,26 +25,26 @@ def render() -> None:
         with col1:
             fecha = st.date_input("Fecha", value=date.today())
         with col2:
-            ingreso = st.text_input("Ingreso (hora/fecha)")
+            ingreso = st.date_input("Ingreso")
         with col3:
-            salida_estimada = st.text_input("Salida estimada")
+            salida_estimada = st.date_input("Salida estimada")
 
         st.subheader("Propietario / Tutor")
         col1, col2 = st.columns(2)
         with col1:
             propietario = st.text_input("Nombre del propietario/tutor *")
         with col2:
-            telefono_propietario = st.text_input("Teléfono")
+            telefono_propietario = st.text_input("Teléfono", placeholder="55 1234 5678", key="nombre_tutor")
 
         st.subheader("Datos del perrito")
         col1, col2 = st.columns(2)
         with col1:
             perrito = st.text_input("Nombre del perrito *")
             raza = st.text_input("Raza")
-            edad = st.text_input("Edad")
+            edad = st.number_input("Edad", min_value=1, max_value=100, step=1, format="%d")
         with col2:
             sexo = st.selectbox("Sexo", ["", "Macho", "Hembra"])
-            peso = st.text_input("Peso aproximado")
+            peso = st.number_input("Peso aproximado")
 
         st.subheader("Datos veterinarios")
         col1, col2 = st.columns(2)
@@ -60,14 +60,14 @@ def render() -> None:
         with col1:
             persona_autorizada = st.text_input("Nombre")
         with col2:
-            telefono_autorizada = st.text_input("Teléfono ")
+            telefono_autorizada = st.text_input("Teléfono", placeholder="55 1234 5678", key="nombre_per_autorizada")
 
         st.subheader("Contacto de emergencia")
         col1, col2 = st.columns(2)
         with col1:
             contacto_emergencia = st.text_input("Nombre del contacto")
         with col2:
-            telefono_emergencia = st.text_input("Teléfono  ")
+            telefono_emergencia = st.text_input("Teléfono", placeholder="55 1234 5678", key="nombre_emergencia")
 
         autoriza_decisiones = st.radio(
             "¿Autoriza a esta persona para tomar decisiones si no es posible localizarlo?",
@@ -81,7 +81,7 @@ def render() -> None:
         st.caption("Dibuja con el dedo (móvil/tablet) o el mouse")
         firma_propietario_canvas = st_canvas(
             stroke_width=3,
-            stroke_color="#000000",
+            stroke_color="#0000A0",
             background_color="#FFFFFF",
             height=150,
             width=400,
@@ -90,9 +90,10 @@ def render() -> None:
         )
 
         st.subheader("Firma del responsable del Club")
+        st.caption("Dibuja con el dedo (móvil/tablet) o el mouse")
         firma_responsable_canvas = st_canvas(
             stroke_width=3,
-            stroke_color="#000000",
+            stroke_color="#0000A0",
             background_color="#FFFFFF",
             height=150,
             width=400,
@@ -133,7 +134,7 @@ def render() -> None:
 
             st.success("PDF generado correctamente.")
             st.download_button(
-                label="⬇️ Descargar carta en PDF",
+                label="⬇️ Descargar PDF",
                 data=pdf_bytes,
                 file_name=f"carta_aceptacion_{perrito.replace(' ', '_').lower()}.pdf",
                 mime="application/pdf",
