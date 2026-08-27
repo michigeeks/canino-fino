@@ -24,13 +24,14 @@ Para agregar un nuevo formulario al menú:
     2. Importarlo aquí arriba: from forms import nombre_formulario
     3. Agregar su etiqueta a la lista de NAV_* y su rama al enrutamiento
        al final del archivo (sección "Contenido principal").
+    4. Agregar su card correspondiente en la sección "Pantalla de inicio".
 """
 
 import streamlit as st
 
 from forms import carta_aceptacion, estancia_diurna, spa_grooming
 
-st.set_page_config(page_title="Carta de Aceptación - Club Canino Fino", page_icon="🐾", layout="centered")
+st.set_page_config(page_title="Carta de Aceptación - Club Canino Fino", page_icon="🐾", layout="wide")
 
 # ---------------------------------------------------------------------------
 # Identidad visual — Club de Bienestar Canino Fino
@@ -63,7 +64,7 @@ html, body, [class*="css"] { font-family: 'Work Sans', sans-serif; color: var(--
 [data-testid="stAppViewContainer"] > .main .block-container {
     padding-top: 2rem;
     padding-bottom: 6rem;
-    max-width: 760px;
+    max-width: 1080px;
 }
 
 /* Encabezados de sección dentro del formulario */
@@ -168,6 +169,117 @@ h3 {
     z-index: 999999;
 }
 .brand-footer span { color: var(--gold-soft); }
+
+/* --- Pantalla de inicio: cards grandes (pensadas para tablet) --- */
+.home-hero {
+    text-align: center;
+    margin-bottom: 2.2rem;
+}
+.home-hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-warm);
+    margin-bottom: 0.4rem;
+}
+.home-hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 2.1rem;
+    color: var(--pine-deep);
+    margin-bottom: 0.3rem;
+}
+.home-hero-sub {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.98rem;
+    color: var(--ink);
+    opacity: 0.75;
+}
+
+/* Cada card es un st.container con borde; el botón real vive dentro,
+   pero lo estilizamos para que ocupe toda la card y se sienta como
+   "tocar la tarjeta completa" en tablet. */
+div[data-testid="stVerticalBlockBorderWrapper"]:has(button[kind="secondary"].home-card-btn) {
+    border-radius: 16px !important;
+}
+
+.home-card {
+    background: var(--cream);
+    border: 1px solid var(--sand-line);
+    border-radius: 16px;
+    padding: 1.6rem 1.4rem 1.2rem 1.4rem;
+    margin-bottom: 1.1rem;
+    transition: box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+/* Alinea el alto de las 3 cards cuando están en fila, y empuja el botón
+   de cada una hacia abajo aunque la descripción tenga distinto largo. */
+div[data-testid="column"] div[data-testid="stVerticalBlockBorderWrapper"] {
+    height: 100%;
+}
+div[data-testid="column"] div[data-testid="stVerticalBlock"] {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Tablet en vertical y celulares: apilar las cards una debajo de otra
+   en vez de 3 columnas apretadas. Computadoras y tablets en horizontal
+   (arriba de 900px) conservan la fila de 3. */
+@media (max-width: 900px) {
+    div[data-testid="stHorizontalBlock"]:has(.home-card-icon) {
+        flex-direction: column !important;
+    }
+    div[data-testid="stHorizontalBlock"]:has(.home-card-icon) > div[data-testid="column"] {
+        width: 100% !important;
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+    }
+    div[data-testid="column"] div[data-testid="stVerticalBlockBorderWrapper"] {
+        height: auto;
+    }
+    div[data-testid="column"] div[data-testid="stVerticalBlock"] {
+        height: auto;
+    }
+}
+.home-card-icon {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+}
+.home-card-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--pine-deep);
+    margin-bottom: 0.35rem;
+}
+.home-card-desc {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    opacity: 0.8;
+    margin-bottom: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Botón grande dentro de cada card, cómodo para dedo en tablet */
+div[data-testid="stButton"] button {
+    width: 100%;
+    height: 3.1em;
+    font-size: 1.02em;
+    font-weight: 600;
+    background: var(--pine-deep) !important;
+    color: var(--ivory) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    transition: background 0.15s ease;
+}
+div[data-testid="stButton"] button:hover {
+    background: var(--gold-warm) !important;
+    color: var(--pine-dark) !important;
+}
 </style>
 """
 st.markdown(BRAND_CSS, unsafe_allow_html=True)
@@ -179,6 +291,18 @@ NAV_INICIO = "Inicio"
 NAV_FICHA = "Carta de Aceptación - Hotel Boutique"
 NAV_ESTANCIA_DIURNA = "Carta de Aceptación - Guardería Boutique"
 NAV_SPA_GROOMING = "Consentimiento Informado"
+
+OPCIONES_MENU = [NAV_INICIO, NAV_FICHA, NAV_ESTANCIA_DIURNA, NAV_SPA_GROOMING]
+
+# Se guarda en session_state para poder cambiarlo tanto desde el sidebar
+# como desde las cards de la pantalla de inicio, manteniéndolos en sync.
+if "seccion" not in st.session_state:
+    st.session_state.seccion = NAV_INICIO
+
+
+def _ir_a(destino: str) -> None:
+    st.session_state.seccion = destino
+
 
 with st.sidebar:
     st.markdown(
@@ -192,21 +316,83 @@ with st.sidebar:
     )
     seccion = st.radio(
         "Menú",
-        [NAV_INICIO, NAV_FICHA, NAV_ESTANCIA_DIURNA, NAV_SPA_GROOMING],
+        OPCIONES_MENU,
         label_visibility="collapsed",
+        key="seccion",
     )
+
+
+# ---------------------------------------------------------------------------
+# Pantalla de inicio — 3 cards grandes (tablet-friendly)
+# ---------------------------------------------------------------------------
+def _render_inicio() -> None:
+    st.markdown(
+        """
+        <div class="home-hero">
+            <div class="home-hero-eyebrow">Canino Fino - Club de Bienestar & Hotel Boutique </div>
+            <div class="home-hero-title">¿Qué formulario necesitas llenar?</div>
+            <div class="home-hero-sub">Selecciona una opción para comenzar</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    cards = [
+        {
+            "icon": "🏨",
+            "titulo": "Hotel Boutique",
+            "desc": "Carta de aceptación de servicios para hospedaje de tu perrito en el club.",
+            "boton": "Ir a Hotel Boutique",
+            "destino": NAV_FICHA,
+        },
+        {
+            "icon": "🐕",
+            "titulo": "Guardería Boutique",
+            "desc": "Carta de aceptación de servicios para estancia diurna.",
+            "boton": "Ir a Guardería Boutique",
+            "destino": NAV_ESTANCIA_DIURNA,
+        },
+        {
+            "icon": "✂️",
+            "titulo": "Spa & Grooming",
+            "desc": "Consentimiento informado para servicios de spa y estética canina.",
+            "boton": "Ir a Consentimiento Informado",
+            "destino": NAV_SPA_GROOMING,
+        },
+    ]
+
+    columnas = st.columns(3, gap="medium")
+    for columna, card in zip(columnas, cards):
+        with columna:
+            with st.container(border=True):
+                st.markdown(
+                    f"""
+                    <div class="home-card-icon">{card['icon']}</div>
+                    <div class="home-card-title">{card['titulo']}</div>
+                    <div class="home-card-desc">{card['desc']}</div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+                st.button(
+                    card["boton"],
+                    key=f"home_card_{card['destino']}",
+                    on_click=_ir_a,
+                    args=(card["destino"],),
+                    use_container_width=True,
+                )
 
 
 # ---------------------------------------------------------------------------
 # Contenido principal — según la opción elegida en el menú
 # ---------------------------------------------------------------------------
-if seccion == NAV_FICHA:
+if seccion == NAV_INICIO:
+    _render_inicio()
+elif seccion == NAV_FICHA:
     carta_aceptacion.render()
 elif seccion == NAV_ESTANCIA_DIURNA:
     estancia_diurna.render()
 elif seccion == NAV_SPA_GROOMING:
     spa_grooming.render()
-# Si es "Inicio", no se renderiza nada: pantalla principal en blanco.
 
 # ---------------------------------------------------------------------------
 # Footer de marca
