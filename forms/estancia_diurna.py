@@ -89,34 +89,31 @@ def render() -> None:
         submitted = st.form_submit_button("Generar PDF")
 
     if submitted:
-        if not propietario or not perrito:
-            st.error("El nombre del propietario y del perrito son obligatorios.")
-        else:
-            pdf_bytes = render_estancia_diurna_pdf(
-                propietario=propietario,
-                telefono_propietario=telefono_propietario,
-                correo_propietario=correo_propietario,
-                identificacion_oficial=identificacion_oficial,
-                perrito=perrito,
-                raza=raza,
-                edad=edad,
-                sexo=sexo,
-                peso=peso,
-                color=color,
-                mvz_habitual=mvz_habitual,
-                tel_mvz=tel_mvz,
-                autoriza_imagen=autoriza_imagen,
-                hora_ingreso=hora_ingreso.strftime("%d/%m/%Y"),
-                hora_salida=hora_salida.strftime("%d/%m/%Y"),
-                observaciones=observaciones or "",
-                firma_propietario=canvas_to_base64_png(firma_propietario_canvas),
-                firma_responsable=canvas_to_base64_png(firma_responsable_canvas),
-            )
+        pdf_bytes = render_estancia_diurna_pdf(
+            propietario=propietario,
+            telefono_propietario=telefono_propietario,
+            correo_propietario=correo_propietario,
+            identificacion_oficial=identificacion_oficial,
+            perrito=perrito,
+            raza=raza,
+            edad=edad,
+            sexo=sexo,
+            peso=peso,
+            color=color,
+            mvz_habitual=mvz_habitual,
+            tel_mvz=tel_mvz,
+            autoriza_imagen=autoriza_imagen,
+            hora_ingreso=hora_ingreso.strftime("%d/%m/%Y"),
+            hora_salida=hora_salida.strftime("%d/%m/%Y"),
+            observaciones=observaciones or "",
+            firma_propietario=canvas_to_base64_png(firma_propietario_canvas),
+            firma_responsable=canvas_to_base64_png(firma_responsable_canvas),
+        )
 
-            st.success("PDF generado correctamente.")
-            st.download_button(
-                label="⬇️ Descargar PDF",
-                data=pdf_bytes,
-                file_name=f"carta_estancia_diurna_{perrito.replace(' ', '_').lower()}.pdf",
-                mime="application/pdf",
-            )
+        st.success("PDF generado correctamente.")
+        st.download_button(
+            label="⬇️ Descargar PDF",
+            data=pdf_bytes,
+            file_name=f"carta_estancia_diurna_{perrito.replace(' ', '_').lower()}.pdf",
+            mime="application/pdf",
+        )

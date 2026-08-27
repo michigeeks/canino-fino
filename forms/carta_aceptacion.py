@@ -105,38 +105,35 @@ def render() -> None:
         submitted = st.form_submit_button("Generar PDF")
 
     if submitted:
-        if not propietario or not perrito:
-            st.error("El nombre del propietario y del perrito son obligatorios.")
-        else:
-            pdf_bytes = render_ficha_pdf(
-                fecha=fecha.strftime("%d/%m/%Y"),
-                ingreso=ingreso.strftime("%d/%m/%Y"),
-                salida_estimada=salida_estimada.strftime("%d/%m/%Y"),
-                propietario=propietario,
-                telefono_propietario=telefono_propietario,
-                perrito=perrito,
-                raza=raza,
-                edad=edad,
-                sexo=sexo,
-                peso=peso,
-                mvz_habitual=mvz_habitual,
-                tel_mvz=tel_mvz,
-                medicamentos=medicamentos or "—",
-                alergias=alergias or "—",
-                persona_autorizada=persona_autorizada,
-                telefono_autorizada=telefono_autorizada,
-                contacto_emergencia=contacto_emergencia,
-                telefono_emergencia=telefono_emergencia,
-                autoriza_decisiones=autoriza_decisiones,
-                observaciones=observaciones or "",
-                firma_propietario=canvas_to_base64_png(firma_propietario_canvas),
-                firma_responsable=canvas_to_base64_png(firma_responsable_canvas),
-            )
+        pdf_bytes = render_ficha_pdf(
+            fecha=fecha.strftime("%d/%m/%Y"),
+            ingreso=ingreso.strftime("%d/%m/%Y"),
+            salida_estimada=salida_estimada.strftime("%d/%m/%Y"),
+            propietario=propietario,
+            telefono_propietario=telefono_propietario,
+            perrito=perrito,
+            raza=raza,
+            edad=edad,
+            sexo=sexo,
+            peso=peso,
+            mvz_habitual=mvz_habitual,
+            tel_mvz=tel_mvz,
+            medicamentos=medicamentos or "—",
+            alergias=alergias or "—",
+            persona_autorizada=persona_autorizada,
+            telefono_autorizada=telefono_autorizada,
+            contacto_emergencia=contacto_emergencia,
+            telefono_emergencia=telefono_emergencia,
+            autoriza_decisiones=autoriza_decisiones,
+            observaciones=observaciones or "",
+            firma_propietario=canvas_to_base64_png(firma_propietario_canvas),
+            firma_responsable=canvas_to_base64_png(firma_responsable_canvas),
+        )
 
-            st.success("PDF generado correctamente.")
-            st.download_button(
-                label="⬇️ Descargar PDF",
-                data=pdf_bytes,
-                file_name=f"carta_aceptacion_{perrito.replace(' ', '_').lower()}.pdf",
-                mime="application/pdf",
-            )
+        st.success("PDF generado correctamente.")
+        st.download_button(
+            label="⬇️ Descargar PDF",
+            data=pdf_bytes,
+            file_name=f"carta_aceptacion_{perrito.replace(' ', '_').lower()}.pdf",
+            mime="application/pdf",
+        )

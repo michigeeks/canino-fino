@@ -69,29 +69,26 @@ def render() -> None:
         submitted = st.form_submit_button("Generar PDF")
 
     if submitted:
-        if not propietario or not perrito:
-            st.error("El nombre del dueño y de la mascota son obligatorios.")
-        else:
-            pdf_bytes = render_spa_grooming_pdf(
-                fecha=fecha.strftime("%d/%m/%Y"),
-                perrito=perrito,
-                raza=raza,
-                edad=edad,
-                propietario=propietario,
-                domicilio=domicilio,
-                telefono=telefono,
-                ansiedad=ansiedad,
-                agresividad=agresividad,
-                enfermedades_alergias=enfermedades_alergias,
-                observaciones=observaciones,
-                firma_aceptacion=canvas_to_base64_png(firma_aceptacion_canvas),
-                firma_recepcion=canvas_to_base64_png(firma_recepcion_canvas),
-            )
+        pdf_bytes = render_spa_grooming_pdf(
+            fecha=fecha.strftime("%d/%m/%Y"),
+            perrito=perrito,
+            raza=raza,
+            edad=edad,
+            propietario=propietario,
+            domicilio=domicilio,
+            telefono=telefono,
+            ansiedad=ansiedad,
+            agresividad=agresividad,
+            enfermedades_alergias=enfermedades_alergias,
+            observaciones=observaciones,
+            firma_aceptacion=canvas_to_base64_png(firma_aceptacion_canvas),
+            firma_recepcion=canvas_to_base64_png(firma_recepcion_canvas),
+        )
 
-            st.success("PDF generado correctamente.")
-            st.download_button(
-                label="⬇️ Descargar PDF",
-                data=pdf_bytes,
-                file_name=f"consentimiento_spa_{perrito.replace(' ', '_').lower()}.pdf",
-                mime="application/pdf",
-            )
+        st.success("PDF generado correctamente.")
+        st.download_button(
+            label="⬇️ Descargar PDF",
+            data=pdf_bytes,
+            file_name=f"consentimiento_spa_{perrito.replace(' ', '_').lower()}.pdf",
+            mime="application/pdf",
+        )
