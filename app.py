@@ -288,9 +288,9 @@ st.markdown(BRAND_CSS, unsafe_allow_html=True)
 # Menú lateral
 # ---------------------------------------------------------------------------
 NAV_INICIO = "Inicio"
-NAV_FICHA = "Carta de Aceptación - Hotel Boutique"
-NAV_ESTANCIA_DIURNA = "Carta de Aceptación - Guardería Boutique"
-NAV_SPA_GROOMING = "Consentimiento Informado"
+NAV_FICHA = "Hotel Boutique"
+NAV_ESTANCIA_DIURNA = "Guardería Boutique"
+NAV_SPA_GROOMING = "Spa Boutique"
 
 OPCIONES_MENU = [NAV_INICIO, NAV_FICHA, NAV_ESTANCIA_DIURNA, NAV_SPA_GROOMING]
 
