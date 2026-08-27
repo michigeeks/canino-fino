@@ -5,6 +5,7 @@ Mismo patrón que forms/carta_aceptacion.py: un módulo por formulario, con
 una función render() que app.py invoca según la opción de menú seleccionada.
 """
 from datetime import date
+from datetime import time
 
 import streamlit as st
 from streamlit_drawable_canvas import st_canvas
@@ -55,10 +56,10 @@ def render() -> None:
         st.subheader("Horario de la visita")
         col1, col2 = st.columns(2)
         with col1:
-            hora_ingreso = st.date_input("Hora de ingreso", value=date.today())
+            hora_ingreso = st.time_input("Hora de ingreso", value=time(9, 0), step=1800)
 
         with col2:
-            hora_salida = st.date_input("Hora de salida")
+            hora_salida = st.time_input("Hora de salida", value=time(18, 0), step=1800)
 
         observaciones = st.text_area("Observaciones")
 
@@ -103,8 +104,8 @@ def render() -> None:
             mvz_habitual=mvz_habitual,
             tel_mvz=tel_mvz,
             autoriza_imagen=autoriza_imagen,
-            hora_ingreso=hora_ingreso.strftime("%d/%m/%Y"),
-            hora_salida=hora_salida.strftime("%d/%m/%Y"),
+            hora_ingreso=hora_ingreso.strftime("%H:%M"),
+            hora_salida=hora_salida.strftime("%H:%M"),
             observaciones=observaciones or "",
             firma_propietario=canvas_to_base64_png(firma_propietario_canvas),
             firma_responsable=canvas_to_base64_png(firma_responsable_canvas),
