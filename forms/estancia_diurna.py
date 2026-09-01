@@ -54,11 +54,12 @@ def render() -> None:
         )
 
         st.subheader("Horario de la visita")
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
         with col1:
-            hora_ingreso = st.time_input("Hora de ingreso", value=time(9, 0), step=1800)
-
+            dia_visita = st.date_input("Día", value=date.today())
         with col2:
+            hora_ingreso = st.time_input("Hora de ingreso", value=time(9, 0), step=1800)
+        with col3:
             hora_salida = st.time_input("Hora de salida", value=time(18, 0), step=1800)
 
         observaciones = st.text_area("Observaciones")
@@ -104,6 +105,7 @@ def render() -> None:
             mvz_habitual=mvz_habitual,
             tel_mvz=tel_mvz,
             autoriza_imagen=autoriza_imagen,
+            dia_visita=dia_visita.strftime("%d/%m/%Y"),
             hora_ingreso=hora_ingreso.strftime("%H:%M"),
             hora_salida=hora_salida.strftime("%H:%M"),
             observaciones=observaciones or "",

@@ -181,6 +181,7 @@
 
 .firma-bloque .firma-nombre {
     margin: 0;
+    text-align: center;
 }
 
 /* Firma dibujada en canvas */
