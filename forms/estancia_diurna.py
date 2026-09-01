@@ -115,6 +115,6 @@ def render() -> None:
         st.download_button(
             label="⬇️ Descargar PDF",
             data=pdf_bytes,
-            file_name=f"carta_estancia_diurna_{perrito.replace(' ', '_').lower()}.pdf",
+            file_name=f"guarderia_{perrito.replace(' ', '_').lower()}_{date.today().strftime('%d_%m_%y')}.pdf",
             mime="application/pdf",
         )

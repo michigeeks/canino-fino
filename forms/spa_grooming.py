@@ -89,6 +89,6 @@ def render() -> None:
         st.download_button(
             label="⬇️ Descargar PDF",
             data=pdf_bytes,
-            file_name=f"consentimiento_spa_{perrito.replace(' ', '_').lower()}.pdf",
+            file_name=f"spa_{perrito.replace(' ', '_').lower()}_{fecha.strftime('%d_%m_%y')}.pdf",
             mime="application/pdf",
         )

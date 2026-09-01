@@ -354,9 +354,9 @@ def _render_inicio() -> None:
         },
         {
             "icon": "✂️",
-            "titulo": "Spa & Grooming",
+            "titulo": "Spa Boutique",
             "desc": "Consentimiento informado para servicios de spa y estética canina.",
-            "boton": "Ir a Consentimiento Informado",
+            "boton": "Ir a Spa Boutique",
             "destino": NAV_SPA_GROOMING,
         },
     ]
