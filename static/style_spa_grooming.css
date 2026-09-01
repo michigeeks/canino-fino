@@ -17,8 +17,8 @@
 }
 
 .header-spa .logo-spa {
-    width: 46px;
-    height: 46px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
     display: block;
     margin: 0 auto 4px auto;

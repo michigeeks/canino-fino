@@ -44,7 +44,20 @@ def uploaded_file_to_base64(uploaded_file) -> str | None:
     return f"data:{mime};base64,{b64}"
 
 
-def _find_logo_file() -> Path | None:
+def _find_logo_file(nombre_preferido: str | None = None) -> Path | None:
+    """Busca el archivo de logo a embeber en el PDF.
+
+    Si se pasa `nombre_preferido` (ej. "logo_hotel.png"), se busca ese
+    archivo exacto primero dentro de static/. Si no existe (o no se pasó
+    ninguno), se cae de regreso a la búsqueda genérica de siempre
+    ("logo_club_canino.*", "logo.*"), para no romper formularios que aún
+    no tengan su logo específico configurado.
+    """
+    if nombre_preferido:
+        ruta = STATIC_DIR / nombre_preferido
+        if ruta.exists():
+            return ruta
+
     candidatos = [
         "logo_club_canino.jpeg",
         "logo_club_canino.jpg",
@@ -79,7 +92,7 @@ def _file_to_base64(path: Path | None) -> str | None:
     return f"data:{mime};base64,{b64}"
 
 
-def _render_pdf(template_name: str, extra_css_file: str | None = None, **context) -> bytes:
+def _render_pdf(template_name: str, extra_css_file: str | None = None, logo_file: str | None = None, **context) -> bytes:
     """Renderiza un template de templates/ con el contexto dado y devuelve los bytes del PDF.
 
     El CSS se inyecta directamente dentro de un <style> en el HTML (en vez de
@@ -92,14 +105,17 @@ def _render_pdf(template_name: str, extra_css_file: str | None = None, **context
     concatena después, así puede sobreescribir puntualmente alguna regla
     del CSS base sin duplicarlo todo.
 
-    El logo del club se busca automáticamente en static/ (ver _find_logo_file)
-    y se embebe aquí, así los formularios no tienen que preocuparse por él.
+    El logo se busca en static/ (ver _find_logo_file) y se embebe aquí, así
+    los formularios no tienen que preocuparse por él. Cada documento puede
+    usar su propio logo pasando `logo_file` con el nombre del archivo
+    (ej. "logo_spa.png"); si no se encuentra ese archivo específico, se cae
+    de regreso al logo genérico del club.
     """
     css = (STATIC_DIR / "style.css").read_text(encoding="utf-8")
     if extra_css_file:
         css += "\n" + (STATIC_DIR / extra_css_file).read_text(encoding="utf-8")
 
-    logo_b64 = _file_to_base64(_find_logo_file())
+    logo_b64 = _file_to_base64(_find_logo_file(logo_file))
     template = _jinja_env.get_template(template_name)
     html_final = template.render(css=css, logo=logo_b64, **context)
     return HTML(string=html_final).write_pdf()
@@ -107,14 +123,24 @@ def _render_pdf(template_name: str, extra_css_file: str | None = None, **context
 
 def render_ficha_pdf(**context) -> bytes:
     """Carta de Aceptación de Servicios de Hotel Boutique (hospedaje)."""
-    return _render_pdf("ficha.html", **context)
+    return _render_pdf("ficha.html", logo_file="logo_club.png", **context)
 
 
 def render_estancia_diurna_pdf(**context) -> bytes:
     """Carta de Aceptación del Servicio de Estancia Diurna (Guardería Boutique)."""
-    return _render_pdf("ficha_estancia_diurna.html", extra_css_file="style_estancia_diurna.css", **context)
+    return _render_pdf(
+        "ficha_estancia_diurna.html",
+        extra_css_file="style_estancia_diurna.css",
+        logo_file="logo_club.png",
+        **context,
+    )
 
 
 def render_spa_grooming_pdf(**context) -> bytes:
     """Consentimiento Informado — Canino Fino Spa & Grooming Boutique."""
-    return _render_pdf("ficha_spa_grooming.html", extra_css_file="style_spa_grooming.css", **context)
+    return _render_pdf(
+        "ficha_spa_grooming.html",
+        extra_css_file="style_spa_grooming.css",
+        logo_file="logo_canino.png",
+        **context,
+    )
